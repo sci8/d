@@ -2,7 +2,3 @@
 h1, h2, h3, h4, h5, h6 {
     font-size: 100%;
 }
-[data-date-toISOString]::before {
-    content: attr(data-date-toISOString);
-    display: block;
-}
