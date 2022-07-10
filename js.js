@@ -1,2 +1,10 @@
 'use strict';
-addEventListener('DOMContentLoaded', e => ['data-time-stamp'].forEach(a => [...document.body.querySelectorAll(`[${a}]`)].forEach(s => s.setAttribute('data-date-toISOString', new Date(Number(s.getAttribute(a))).toISOString()))));
+new Promise(addEventListener.bind(this, 'DOMContentLoaded'))
+.then(e => {
+    const a_html = 'data-Date_getTime';
+    const a_css = 'data-Date_toISOString';
+    document.head.appendChild(document.createElement('style')).sheet.insertRule(`[${a_css}]::before {content: attr(${a_css}); display: block;}`, 0);
+    [...document.body.querySelectorAll(`[${a_html}]`)].forEach(s => s.setAttribute(a_css, new Date(Number(s.getAttribute(a_html))).toISOString()));
+    return e;
+})
+.catch(() => undefined);
