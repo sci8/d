@@ -12,4 +12,5 @@ new Promise(addEventListener.bind(this, 'DOMContentLoaded'))
     // document.head.appendChild(document.createElement('style')).sheet.insertRule(`[${a_css}]::before {content: attr(${a_css}); display: block;}`, 0);
     return e;
 })
-.catch(() => undefined);
+// .catch(() => undefined);
+;
