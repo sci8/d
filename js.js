@@ -1,5 +1,5 @@
 'use strict';
-await new Promise(addEventListener.bind(this, 'DOMContentLoaded'))
+new Promise(addEventListener.bind(this, 'DOMContentLoaded'))
 .then(e => {
     const id_prefix = 'ID_TIME_STAMP_';console.log(id_prefix);
     for (const article of document.body.querySelectorAll(`[id^="${id_prefix}"]`)) {
