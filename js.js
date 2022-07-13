@@ -1,17 +1,18 @@
 'use strict';
 new Promise(addEventListener.bind(this, 'DOMContentLoaded'))
 .then(e => {
-    const css_selector = '[id^="ID_TIME_STAMP_"]';
-    for (const article of document.body.querySelectorAll(css_selector)) {
+    const selector_article = '[id^="ID_TIME_STAMP_"]';
+    const {sheet} = document.head.appendChild(document.createElement('style'));
+    sheet.insertRule(`${selector_article} {display: flex;}`, sheet.cssRules.length);
+    sheet.insertRule(`${selector_article} > :first-child {margin-right: 1em;}`, sheet.cssRules.length);
+    return {e, selector_article};
+})
+.then(({e, selector_article}) => {
+    for (const article of document.body.querySelectorAll(selector_article)) {
         const time = article.insertBefore(document.createElement('section'), article.firstElementChild).appendChild(document.createElement('p')).appendChild(document.createElement('time'));
         time.setAttribute('datetime', time.appendChild(document.createTextNode(new Date(Number(article.id.match(/\d+$/))).toISOString())).wholeText);
     }
-    return {e, css_selector};
-})
-.then(({e, css_selector}) => {
-    const {sheet} = document.head.appendChild(document.createElement('style'));
-    sheet.insertRule(`${css_selector} {display: flex;}`, sheet.cssRules.length);
-    sheet.insertRule(`${css_selector} > :first-child {margin-right: 1em;}`, sheet.cssRules.length);
     return e;
 })
+.then(() => undefined)
 .catch(() => undefined);
