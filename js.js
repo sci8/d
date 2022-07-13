@@ -10,7 +10,8 @@ new Promise(addEventListener.bind(this, 'DOMContentLoaded'))
 })
 .then(({e, css_selector}) => {
     const {sheet} = document.head.appendChild(document.createElement('style'));
-    sheet.insertRule(`${css_selector} {display: flex;}`, 0);
+    sheet.insertRule(`${css_selector} {display: flex;}`, sheet.cssRules.length);
+    sheet.insertRule(`${css_selector} > :first-child {margin-right: 1em;}`, sheet.cssRules.length);
     return e;
 })
 .catch(() => undefined);
