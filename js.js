@@ -4,8 +4,8 @@ new Promise(addEventListener.bind(this, 'DOMContentLoaded'))
     const selector_article = '[id^="ID_TIME_STAMP_"]';
     const {sheet} = document.head.appendChild(document.createElement('style'));
     sheet.insertRule(`${selector_article} {display: flex;}`, sheet.cssRules.length);
-    sheet.insertRule(`${selector_article} > :first-child {margin-right: 1em; background-color: Palegoldenrod;}`, sheet.cssRules.length);
-    sheet.insertRule(`${selector_article} > :first-child time {background-color: Black; color: Palegoldenrod;}`, sheet.cssRules.length);
+    sheet.insertRule(`${selector_article} > :first-child {margin-right: 1em; background-color: rgb(10, 186, 181);}`, sheet.cssRules.length);
+    sheet.insertRule(`${selector_article} > :first-child time {background-color: rgb(0, 0, 0); color: rgb(10, 186, 181);}`, sheet.cssRules.length);
     return {e, selector_article};
 })
 .then(({e, selector_article}) => {
