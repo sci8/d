@@ -11,7 +11,7 @@ new Promise(addEventListener.bind(this, 'DOMContentLoaded'))
 .then(({e, selector_article}) => {
     for (const article of document.body.querySelectorAll(selector_article)) {
         const time = article.insertBefore(document.createElement('section'), article.firstElementChild).appendChild(document.createElement('p')).appendChild(document.createElement('time'));
-        time.setAttribute('datetime', time.appendChild(document.createTextNode(new Date(Number(article.id.match(/\d+$/))).toISOString())).wholeText);
+        time.setAttribute('datetime', time.appendChild(document.createTextNode(new Date(Number(article.id.match(/\d+$/))).toISOString().replace(/\.\d+/, ''))).wholeText);
     }
     return e;
 })
