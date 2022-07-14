@@ -26,8 +26,10 @@ td, th {
 }
 :link {
     color: rgb(10, 186, 181);
+    text-decoration: none;
+    border-bottom: solid .0625rem;
 }
 :visited {
     color: rgb(10, 186, 181);
-    text-decoration-color: transparent;
+    border-bottom-color: transparent;
 }
