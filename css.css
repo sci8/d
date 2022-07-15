@@ -31,5 +31,8 @@ td, th {
 }
 :visited {
     color: rgb(10, 186, 181);
-    border-bottom-color: transparent;
+    border-bottom-color: rgb(255, 255, 255);
+}
+:link:focus, :link:hover, :visited:focus, :visited:hover {
+    outline: solid .0625rem;
 }
