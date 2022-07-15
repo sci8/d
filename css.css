@@ -33,6 +33,9 @@ td, th {
     color: rgb(10, 186, 181);
     border-bottom-color: rgb(255, 255, 255);
 }
+:link:active, :visited:active {
+    outline: dotted .0625rem rgb(0, 0, 0);
+}
 :link:focus, :link:hover, :visited:focus, :visited:hover {
     outline: solid .0625rem;
 }
