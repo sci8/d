@@ -1,41 +1,41 @@
 /*あ*/
 * {
-    font-size: 1rem;
+font-size: 1rem;
 }
 small, rp, rt, sub, sup {
-    font-size: initial;
+font-size: initial;
 }
 time {
-    white-space: nowrap;
+white-space: nowrap;
 }
 h1 {
-    color: rgb(10, 186, 181);
+color: rgb(10, 186, 181);
 }
 blockquote {
-    border: solid .0625rem rgb(10, 186, 181);
-    padding: 0 1rem;
+border: solid .0625rem rgb(10, 186, 181);
+padding: 0 1rem;
 }
 table {
-    margin: .5rem;
-    border-spacing: 0;
-    border-collapse: collapse;
+margin: .5rem;
+border-spacing: 0;
+border-collapse: collapse;
 }
 td, th {
-    border: solid .0625rem rgb(10, 186, 181);
-    padding: 0 .5rem;
+border: solid .0625rem rgb(10, 186, 181);
+padding: 0 .5rem;
 }
 :link {
-    color: rgb(10, 186, 181);
-    text-decoration: none;
-    border-bottom: solid .0625rem;
+color: rgb(10, 186, 181);
+text-decoration: none;
+border-bottom: solid .0625rem;
 }
 :visited {
-    color: rgb(10, 186, 181);
-    border-bottom-color: rgb(255, 255, 255);
+color: rgb(10, 186, 181);
+border-bottom-color: rgb(255, 255, 255);
 }
 :link:active, :visited:active {
-    outline: dotted .0625rem rgb(0, 0, 0);
+outline: dotted .0625rem rgb(0, 0, 0);
 }
 :link:focus, :link:hover, :visited:focus, :visited:hover {
-    outline: solid .0625rem;
+outline: solid .0625rem;
 }
