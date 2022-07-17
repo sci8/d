@@ -19,7 +19,7 @@
 <p>適切な例が思い浮かばないが例えば</p>
 <ul><li><code lang="en">function sqrt(integerPortion: BigInt, fractionalPortion: BigInt): BigInt {...}</code></li></ul>
 <p>みたいなのは使い勝手どうなのかな。</p>
-<p>もちろん必要なのは<code lang="en">BigInt#toString()</code>だからこれはそもそも<code lang="en">String</code>でいい。</p>
+<p>もちろん必要なのは<code lang="en">BigInt#toString()</code>だからこれはそもそも<code lang="en">String</code>で良い。</p>
 <p>そもそも数値リテラルとして<code lang="en">1.0e-20</code>は要るのかもしれないがそれが数字として<code lang="en">"1.0e-20"</code>と表示されて欲しい場面はむしろ特殊だと思われるわけで、文字列は入力そのままで何百桁でも愚直に返して欲しい。例えば10進数以外の文字列は丸めた結果を長々と返すだけなんだが、こういうのも要らんのよね、愚直に入力をそのまま返して欲しい。</p>
 </section>
 </article>
