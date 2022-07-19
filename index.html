@@ -14,6 +14,20 @@
 </section>
 </article>
 -->
+<article id="ID_TIME_STAMP_1658252007112">
+<section>
+<p><span lang="en">mariadb</span>でいわゆる<span lang="en">unix time</span>を<var>13</var>桁の<code lang="en">BIGINT</code>にしている。これを<span lang="en">node-mariadb</span>で読むと<code lang="en">BigInt</code>になる。</p>
+<p>原因を調べていないが</p>
+<ul lang="en">
+<li><code>.map(record => new Proxy(record, {get: (t, p, r) => p == 'foo' ? Number(t[p]) : Reflect.get(t, p, r)}))</code></li>
+</ul>
+<p>みたいなのがスルーされる。これ自体をあるひとつのオブジェクトに対してテストしたら意図通りになるので、数万レコード以上という数が問題なのかなと思われる。追求する時間がアホらしいので</p>
+<ul lang="en">
+<li><code>.map(({foo, bar}) => ({foo: Number(foo), bar}))</code></li>
+</ul>
+<p>のような処理にした(もちろん意図通りの値を返す)。</p>
+</section>
+</article>
 <article id="ID_TIME_STAMP_1658250573834">
 <section>
 <p>肩関節周囲炎が激痛になってから3ヶ月にもなる。ネットで軽く検索する限りではこれほどの重症例が無い。こうすれば楽ですよ的な姿勢をそもそも取れないほど酷い。精神的にも病むような気がする。渡された薬は鎮痛薬ばかり。知識は無いが何のメリットも無いように思われる。</p>
