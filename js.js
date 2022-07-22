@@ -28,6 +28,6 @@ new Promise(addEventListener.bind(this, 'DOMContentLoaded'))
 .then(() => undefined)
 .catch(error => {
     if (location.protocol == 'file:') {
-        console.log(error);
+        console.error(error);
     }
 });
