@@ -24,6 +24,10 @@ td, th {
 border: solid .0625rem rgb(10, 186, 181);
 padding: 0 .5rem;
 }
+ins {
+text-decoration: none;
+color: rgb(25, 25, 112);
+}
 :link {
 color: rgb(10, 186, 181);
 text-decoration: none;
