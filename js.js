@@ -9,7 +9,7 @@ new Promise(addEventListener.bind(this, 'DOMContentLoaded'))
         switch (sheet.title) {
             case 'heritage': {
                 sheet.insertRule(`${selector_article} {display: flex;}`, sheet.cssRules.length);
-                sheet.insertRule(`${selector_article} > :first-child {margin-right: 1em; background-color: rgb(10, 186, 181);}`, sheet.cssRules.length);
+                sheet.insertRule(`${selector_article} > :first-child {margin: 0 1rem 0 0; background-color: rgb(10, 186, 181);}`, sheet.cssRules.length);
                 sheet.insertRule(`${selector_article} > :first-child time {background-color: rgb(0, 0, 0); color: rgb(10, 186, 181);}`, sheet.cssRules.length);
                 break;
             }
@@ -18,7 +18,7 @@ new Promise(addEventListener.bind(this, 'DOMContentLoaded'))
     })
     .then(({selector_article, sheet}) => {
         for (const article of document.body.querySelectorAll(selector_article)) {
-            const time = article.insertBefore(document.createElement('section'), article.firstElementChild).appendChild(document.createElement('p')).appendChild(document.createElement('time'));
+            const time = article.insertBefore(document.createElement('h2'), article.firstElementChild).appendChild(document.createElement('time'));
             time.setAttribute('datetime', time.appendChild(document.createTextNode(new Date(Number(article.id.match(/\d+$/))).toISOString().replace(/\.\d+/, ''))).wholeText);
         }
         sheet.disabled = false;
