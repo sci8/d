@@ -108,10 +108,10 @@
 </article>
 <article id="ID_TIME_STAMP_1657555918594">
 <section>
-<p>いささかトリッキーな感じだが</p>
-<pre><code>new Promise((form => form.addEventListener.bind(form, 'submit'))(document.forms.namedItem('...')))
-.then(e => {...; return e}).then(e => {...; return e})....catch(error => {...})/*.finally(...)*/;</code></pre>
-<p>は最初のイベント発生時に実行されるだけ。</p>
+<p>いささかトリッキーな感じだが<br />
+<code lang="en">new Promise((form => form.addEventListener.bind(form, 'submit'))(document.forms.namedItem('...')))<br />
+.then(e => {...; return e}).then(e => {...; return e})....catch(error => {...})/*.finally(...)*/;</code><br />
+は最初のイベント発生時に実行されるだけ。</p>
 </section>
 </article>
 <article id="ID_TIME_STAMP_1657475163538">
