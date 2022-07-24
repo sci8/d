@@ -47,30 +47,38 @@ const entries_proxied = entries.map(([u, v]) =&gt; [u, new Proxy(v, {get: (t, p,
 console.table(entries_proxied);<br />
 console.table(Object.fromEntries(entries_proxied));</code><br />
 の出力で</p>
-<pre lang="en"><samp>┌─────────┬────────────┬──────────────────────┐
-│ (index) │     0      │          1           │
-├─────────┼────────────┼──────────────────────┤
-│    0    │ '20220719' │ { usd_jpy: 137.908 } │
-│    1    │ '20220724' │ { usd_jpy: 136.136 } │
-└─────────┴────────────┴──────────────────────┘
-┌──────────┬─────────┐
-│ (index)  │ usd_jpy │
-├──────────┼─────────┤
-│ 20220719 │ 137.908 │
-│ 20220724 │ 136.136 │
-└──────────┴─────────┘
-┌─────────┬────────────┬──────────────────────┐
-│ (index) │     0      │          1           │
-├─────────┼────────────┼──────────────────────┤
-│    0    │ '20220719' │ { usd_jpy: 137.908 } │
-│    1    │ '20220724' │ { usd_jpy: 136.136 } │
-└─────────┴────────────┴──────────────────────┘
-┌──────────┬─────────┐
-│ (index)  │ usd_jpy │
-├──────────┼─────────┤
-│ 20220719 │   137   │
-│ 20220724 │   136   │
-└──────────┴─────────┘</samp></pre>
+<table lang="en">
+<caption><kbd>entries</kbd></caption>
+<colgroup span="1"><col /></colgroup><colgroup span="2"><col /><col /></colgroup>
+<thead><tr><th><samp>(index)</samp></th><th><samp>0</samp></th><th><samp>1</samp></th></tr></thead>
+<tbody>
+<tr><th><samp>0</samp></th><td><samp>'20220719'</samp></td><td><samp>{ usd_jpy: 137.908 }</samp></td></tr>
+<tr><th><samp>1</samp></th><td><samp>'20220724'</samp></td><td><samp>{ usd_jpy: 136.136 }</samp></td></tr>
+</tbody></table>
+<table lang="en">
+<caption><kbd>Object.fromEntries(entries)</kbd></caption>
+<colgroup span="1"><col /></colgroup><colgroup span="1"><col /></colgroup>
+<thead><tr><th><samp>(index)</samp></th><th><samp>usd_jpy</samp></th></tr></thead>
+<tbody>
+<tr><td><samp>20220719</samp></td><td><samp>137.908</samp></td></tr>
+<tr><td><samp>20220724</samp></td><td><samp>136.136</samp></td></tr>
+</tbody></table>
+<table lang="en">
+<caption><kbd>entries_proxied</kbd></caption>
+<colgroup span="1"><col /></colgroup><colgroup span="2"><col /><col /></colgroup>
+<thead><tr><th><samp>(index)</samp></th><th><samp>0</samp></th><th><samp>1</samp></th></tr></thead>
+<tbody>
+<tr><th><samp>0</samp></th><td><samp>'20220719'</samp></td><td><samp>{ usd_jpy: 137.908 }</samp></td></tr>
+<tr><th><samp>1</samp></th><td><samp>'20220724'</samp></td><td><samp>{ usd_jpy: 136.136 }</samp></td></tr>
+</tbody></table>
+<table lang="en">
+<caption><kbd>Object.fromEntries(entries_proxied)</kbd></caption>
+<colgroup span="1"><col /></colgroup><colgroup span="1"><col /></colgroup>
+<thead><tr><th><samp>(index)</samp></th><th><samp>usd_jpy</samp></th></tr></thead>
+<tbody>
+<tr><td><samp>20220719</samp></td><td><samp><strong>137</strong></samp></td></tr>
+<tr><td><samp>20220724</samp></td><td><samp><strong>136</strong></samp></td></tr>
+</tbody></table>
 <p>みたいに違ってくることが関係しているかもな。<em>浅いと結果的に見て<code lang="en">[[Get]]</code>が呼ばれていないことになっている。</em></p></ins>
 <p>というか<abbr lang="en">JSON</abbr>や<abbr lang="en">CSV</abbr>からの集計などで『<abbr lang="en">SQL</abbr>使えば楽だな』と思えば迷わず<code lang="en">[TEMPORARY] TABLE</code>からの丸投げに限る。</p>
 </section>
