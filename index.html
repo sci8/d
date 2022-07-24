@@ -19,6 +19,27 @@
 <math xmlns="http://www.w3.org/1998/Math/MathML" xml:lang="en">
 </math>
 -->
+<article id="ID_TIME_STAMP_1658696413455">
+<section>
+<h3><code lang="en">console.histogram()</code>みたいなのが</h3>
+<p>欲しい。<code lang="en">console.table()</code>と同様の引数で綺麗にターミナル上にヒストグラムを描画してくれるようなの。</p>
+</section>
+</article>
+<article id="ID_TIME_STAMP_1658692061092">
+<section>
+<h3>今更ながら<code lang="en">Promise</code>の解説ページの殆どは</h3>
+<p>不慣れな入門者が書いている笑。そんなもん書いていないで実験しまくれよとしか笑。</p>
+<p>とりあえず知りたいのって次の5つじゃないか？</p>
+<ul>
+<li>非同期処理は<em>実際のところ</em>処理の後回し。</li>
+<li>コンストラクタの<span lang="en"><var>resolve</var>, <var>reject</var></span>という名前の仮引数は内部の目印。関数扱いすること。また、必ずしもこの名前である必要がないというか<a href="#ID_TIME_STAMP_1657555918594">名前すら不要</a>。<ul>
+<li><code lang="en">resolve()</code>は<code lang="en">return</code>にかなり似ている。違いは<code lang="en">resolve()</code>より後に続くコードも実行される。</li>
+<li><code lang="en">reject()</code>は<code lang="en">throw</code>にかなり似ている。違いは<code lang="en">reject()</code>より後に続くコードも実行される。</li>
+</ul></li>
+<li><span lang="en"><code>.then()</code>, <code>.catch()</code>, <code>.finally()</code></span>はチェーン順に処理される。これが<span lang="en"><code>try {} catch {} finally {}</code>, <code>try {} finally {}</code></span>のように順序が決まっている書き方との違い。</li>
+</ul>
+</section>
+</article>
 <article id="ID_TIME_STAMP_1658383702668">
 <section>
 <h3>『いきなり<code lang="en">.then()</code>』</h3>

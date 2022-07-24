@@ -47,3 +47,6 @@ outline: dotted .0625rem rgb(0, 0, 0);
 :link:focus, :link:hover, :visited:focus, :visited:hover {
 outline: solid .0625rem;
 }
+:target {
+outline: double .1875rem rgb(0, 0, 0);
+}
