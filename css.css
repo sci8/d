@@ -32,6 +32,9 @@ ins {
 text-decoration: none;
 color: rgb(25, 25, 112);
 }
+em {
+text-decoration-line: underline;
+}
 :link {
 color: rgb(10, 186, 181);
 text-decoration: none;
