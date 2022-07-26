@@ -1,13 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta name="viewport" content="width=device-width" />
-<meta charset="UTF-8" />
 <title>[@@sci8]</title>
 <link rel="Stylesheet" type="text/css" href="./css.css" title="heritage" />
 <script type="module" src="./js.js"></script>
 </head>
-<body lang="ja">
+<body xml:lang="ja">
 <h1>日記</h1>
 <!--
 <article id="ID_TIME_STAMP_">
@@ -43,54 +43,54 @@
 </article>
 <article id="ID_TIME_STAMP_1658696413455">
 <section>
-<h3><code lang="en">console.histogram()</code>みたいなのが</h3>
-<p>欲しい。<code lang="en">console.table()</code>と同様の引数で綺麗にターミナル上にヒストグラムを描画してくれるようなの。</p>
+<h3><code xml:lang="en">console.histogram()</code>みたいなのが</h3>
+<p>欲しい。<code xml:lang="en">console.table()</code>と同様の引数で綺麗にターミナル上にヒストグラムを描画してくれるようなの。</p>
 </section>
 </article>
 <article id="ID_TIME_STAMP_1658692061092">
 <section>
-<h3>今更ながら<code lang="en">Promise</code>の解説ページの殆どは</h3>
+<h3>今更ながら<code xml:lang="en">Promise</code>の解説ページの殆どは</h3>
 <p>不慣れな入門者が書いている笑。そんなもん書いていないで実験しまくれよとしか笑。</p>
 <p>とりあえず知りたいのって次の5つじゃないか？</p>
 <ul>
 <li>非同期処理は<em>実際のところ</em>処理の後回し。</li>
-<li>コンストラクタの<span lang="en"><var>resolve</var>, <var>reject</var></span>という名前の仮引数は内部の目印。関数扱いすること。また、必ずしもこの名前である必要がないというか<a href="#ID_TIME_STAMP_1657555918594">名前すら不要</a>。<ul>
-<li><code lang="en">resolve()</code>は<code lang="en">return</code>にかなり似ている。違いは<code lang="en">resolve()</code>より後に続くコードも実行される。</li>
-<li><code lang="en">reject()</code>は<code lang="en">throw</code>にかなり似ている。違いは<code lang="en">reject()</code>より後に続くコードも実行される。</li>
+<li>コンストラクタの<span xml:lang="en"><var>resolve</var>, <var>reject</var></span>という名前の仮引数は内部の目印。関数扱いすること。また、必ずしもこの名前である必要がないというか<a href="#ID_TIME_STAMP_1657555918594">名前すら不要</a>。<ul>
+<li><code xml:lang="en">resolve()</code>は<code xml:lang="en">return</code>にかなり似ている。違いは<code xml:lang="en">resolve()</code>より後に続くコードも実行される。</li>
+<li><code xml:lang="en">reject()</code>は<code xml:lang="en">throw</code>にかなり似ている。違いは<code xml:lang="en">reject()</code>より後に続くコードも実行される。</li>
 </ul></li>
-<li><span lang="en"><code>.then()</code>, <code>.catch()</code>, <code>.finally()</code></span>はチェーン順に処理される。これが<span lang="en"><code>try {} catch {} finally {}</code>, <code>try {} finally {}</code></span>のように順序が決まっている書き方との違い。</li>
+<li><span xml:lang="en"><code>.then()</code>, <code>.catch()</code>, <code>.finally()</code></span>はチェーン順に処理される。これが<span xml:lang="en"><code>try {} catch {} finally {}</code>, <code>try {} finally {}</code></span>のように順序が決まっている書き方との違い。</li>
 </ul>
 </section>
 </article>
 <article id="ID_TIME_STAMP_1658383702668">
 <section>
-<h3>『いきなり<code lang="en">.then()</code>』</h3>
-<p>は必要かなと思う。どういうことかと言うと<code lang="en">new Class().method().then()</code>の<code lang="en">.method()</code>を忘れても大丈夫なように作っておいても悪くはないだろうと思う。</p>
-<p>例えば<code lang="en">new TXNs(...).fetch().then(...)</code>の<code lang="en">.fetch()</code>みたいな常に呼ばれるに決まっているであろうメソッドのこと。</p>
+<h3>『いきなり<code xml:lang="en">.then()</code>』</h3>
+<p>は必要かなと思う。どういうことかと言うと<code xml:lang="en">new Class().method().then()</code>の<code xml:lang="en">.method()</code>を忘れても大丈夫なように作っておいても悪くはないだろうと思う。</p>
+<p>例えば<code xml:lang="en">new TXNs(...).fetch().then(...)</code>の<code xml:lang="en">.fetch()</code>みたいな常に呼ばれるに決まっているであろうメソッドのこと。</p>
 </section>
 </article>
 <article id="ID_TIME_STAMP_1658252007112">
 <section>
 <h3>ミリ秒</h3>
-<p><span lang="en">mariadb</span>でいわゆる<span lang="en">unix time</span>を<var>13</var>桁の<code lang="en">BIGINT</code>にしている。これを<span lang="en">node-mariadb</span>で読むと<code lang="en">BigInt</code>になる。</p>
+<p><span xml:lang="en">mariadb</span>でいわゆる<span xml:lang="en">unix time</span>を<var>13</var>桁の<code xml:lang="en">BIGINT</code>にしている。これを<span xml:lang="en">node-mariadb</span>で読むと<code xml:lang="en">BigInt</code>になる。</p>
 <p>原因を調べていないが</p>
-<ul lang="en">
+<ul xml:lang="en">
 <li><code>.map(record => new Proxy(record, {get: (t, p, r) =&gt; p == 'foo' ? Number(t[p]) : Reflect.get(t, p, r)}))</code></li>
 </ul>
 <p>みたいなのがスルーされる。これ自体をあるひとつのオブジェクトに対してテストしたら意図通りになるので、数万レコード以上という数が問題なのかなと思われる。追求する時間がアホらしいので</p>
-<ul lang="en">
+<ul xml:lang="en">
 <li><code>.map(({foo, bar}) => ({foo: Number(foo), bar}))</code></li>
 </ul>
 <p>のような処理にした(もちろん意図通りの値を返す)。</p>
 <ins datetime="2022-07-24T13:46:12Z"><p>もしかしたら<br />
-<code lang="en">const entries = [['20220719', {usd_jpy: 137.908}], ['20220724', {usd_jpy: 136.136}]];<br />
+<code xml:lang="en">const entries = [['20220719', {usd_jpy: 137.908}], ['20220724', {usd_jpy: 136.136}]];<br />
 console.table(entries);<br />
 console.table(Object.fromEntries(entries));<br />
 const entries_proxied = entries.map(([u, v]) =&gt; [u, new Proxy(v, {get: (t, p, r) =&gt; p == 'usd_jpy' ? <strong>Math.floor(t[p])</strong> : Reflect.get(t, p, r)})]);<br />
 console.table(entries_proxied);<br />
 console.table(Object.fromEntries(entries_proxied));</code><br />
 の出力で</p>
-<table lang="en">
+<table xml:lang="en">
 <caption><kbd>entries</kbd></caption>
 <colgroup span="1"><col /></colgroup><colgroup span="2"><col /><col /></colgroup>
 <thead><tr><th><samp>(index)</samp></th><th><samp>0</samp></th><th><samp>1</samp></th></tr></thead>
@@ -98,7 +98,7 @@ console.table(Object.fromEntries(entries_proxied));</code><br />
 <tr><th><samp>0</samp></th><td><samp>'20220719'</samp></td><td><samp>{ usd_jpy: 137.908 }</samp></td></tr>
 <tr><th><samp>1</samp></th><td><samp>'20220724'</samp></td><td><samp>{ usd_jpy: 136.136 }</samp></td></tr>
 </tbody></table>
-<table lang="en">
+<table xml:lang="en">
 <caption><kbd>Object.fromEntries(entries)</kbd></caption>
 <colgroup span="1"><col /></colgroup><colgroup span="1"><col /></colgroup>
 <thead><tr><th><samp>(index)</samp></th><th><samp>usd_jpy</samp></th></tr></thead>
@@ -106,7 +106,7 @@ console.table(Object.fromEntries(entries_proxied));</code><br />
 <tr><td><samp>20220719</samp></td><td><samp>137.908</samp></td></tr>
 <tr><td><samp>20220724</samp></td><td><samp>136.136</samp></td></tr>
 </tbody></table>
-<table lang="en">
+<table xml:lang="en">
 <caption><kbd>entries_proxied</kbd></caption>
 <colgroup span="1"><col /></colgroup><colgroup span="2"><col /><col /></colgroup>
 <thead><tr><th><samp>(index)</samp></th><th><samp>0</samp></th><th><samp>1</samp></th></tr></thead>
@@ -114,7 +114,7 @@ console.table(Object.fromEntries(entries_proxied));</code><br />
 <tr><th><samp>0</samp></th><td><samp>'20220719'</samp></td><td><samp>{ usd_jpy: 137.908 }</samp></td></tr>
 <tr><th><samp>1</samp></th><td><samp>'20220724'</samp></td><td><samp>{ usd_jpy: 136.136 }</samp></td></tr>
 </tbody></table>
-<table lang="en">
+<table xml:lang="en">
 <caption><kbd>Object.fromEntries(entries_proxied)</kbd></caption>
 <colgroup span="1"><col /></colgroup><colgroup span="1"><col /></colgroup>
 <thead><tr><th><samp>(index)</samp></th><th><samp>usd_jpy</samp></th></tr></thead>
@@ -122,9 +122,9 @@ console.table(Object.fromEntries(entries_proxied));</code><br />
 <tr><td><samp>20220719</samp></td><td><samp><strong>137</strong></samp></td></tr>
 <tr><td><samp>20220724</samp></td><td><samp><strong>136</strong></samp></td></tr>
 </tbody></table>
-<p>みたいに違ってくることが関係しているかもな。<em>浅いと結果的に見て<code lang="en">[[Get]]</code>が呼ばれていないことになっている。</em></p></ins>
-<p>というか<abbr lang="en">JSON</abbr>や<abbr lang="en">CSV</abbr>からの集計などで『<abbr lang="en">SQL</abbr>使えば楽だな』と思えば迷わず<code lang="en">[TEMPORARY] TABLE</code>からの丸投げに限る。</p>
-<ins datetime="2022-07-24T14:58:33Z"><p>しかしあれだな、<span lang="en">Google Chrome</span>は<code lang="en">&lt;pre&gt;</code>要素をこちらの意図通りにはレンダリングしないのな。イラッとさせられたので<code lang="en">&lt;table&gt;</code>要素でマークアップした。</p></ins>
+<p>みたいに違ってくることが関係しているかもな。<em>浅いと結果的に見て<code xml:lang="en">[[Get]]</code>が呼ばれていないことになっている。</em></p></ins>
+<p>というか<abbr xml:lang="en">JSON</abbr>や<abbr xml:lang="en">CSV</abbr>からの集計などで『<abbr xml:lang="en">SQL</abbr>使えば楽だな』と思えば迷わず<code xml:lang="en">[TEMPORARY] TABLE</code>からの丸投げに限る。</p>
+<ins datetime="2022-07-24T14:58:33Z"><p>しかしあれだな、<span xml:lang="en">Google Chrome</span>は<code xml:lang="en">&lt;pre&gt;</code>要素をこちらの意図通りにはレンダリングしないのな。イラッとさせられたので<code xml:lang="en">&lt;table&gt;</code>要素でマークアップした。</p></ins>
 </section>
 </article>
 <article id="ID_TIME_STAMP_1658250573834">
@@ -144,20 +144,20 @@ console.table(Object.fromEntries(entries_proxied));</code><br />
 </article>
 <article id="ID_TIME_STAMP_1658046084979">
 <section>
-<h3><code lang="en">.toExponential()</code>しない限りは全部アウトプットして欲しい。</h3>
+<h3><code xml:lang="en">.toExponential()</code>しない限りは全部アウトプットして欲しい。</h3>
 <p>適切な例が思い浮かばないが例えば</p>
-<ul><li><code lang="en">function sqrt(integerPortion: BigInt, fractionalPortion: BigInt): BigInt {...}</code></li></ul>
+<ul><li><code xml:lang="en">function sqrt(integerPortion: BigInt, fractionalPortion: BigInt): BigInt {...}</code></li></ul>
 <p>みたいなのは使い勝手どうなのかな。</p>
-<p>もちろん必要なのは<code lang="en">BigInt#toString()</code>だからこれはそもそも<code lang="en">String</code>で良い。</p>
-<p>そもそも数値リテラルとして<code lang="en">1.0e-20</code>は要るのかもしれないがそれが数字として<code lang="en">"1.0e-20"</code>と表示されて欲しい場面はむしろ特殊だと思われるわけで、文字列は入力そのままで何百桁でも愚直に返して欲しい。例えば10進数以外の文字列は丸めた結果を長々と返すだけなんだが、こういうのも要らんのよね、愚直に入力をそのまま返して欲しい。</p>
+<p>もちろん必要なのは<code xml:lang="en">BigInt#toString()</code>だからこれはそもそも<code xml:lang="en">String</code>で良い。</p>
+<p>そもそも数値リテラルとして<code xml:lang="en">1.0e-20</code>は要るのかもしれないがそれが数字として<code xml:lang="en">"1.0e-20"</code>と表示されて欲しい場面はむしろ特殊だと思われるわけで、文字列は入力そのままで何百桁でも愚直に返して欲しい。例えば10進数以外の文字列は丸めた結果を長々と返すだけなんだが、こういうのも要らんのよね、愚直に入力をそのまま返して欲しい。</p>
 </section>
 </article>
 <article id="ID_TIME_STAMP_1658040882838">
 <section>
-<h3><span lang="en">github</span>での編集だけで書いていたが</h3>
-<p>やはり反映の遅さを我慢できなくなってローカルで書く事にした。データ(<abbr lang="en">HTML</abbr>など)や設定(<abbr lang="en">CSS</abbr>など)のインデントが個人的に本当に嫌いなのでこの機に全て削除した。</p>
-<p>この個人的好みを正しいものと仮定して、今の世の中には明らかに間違った方向が実在する。<abbr lang="en">SCSS</abbr>のこと。あのね、フラットだからみんな書けるの。デザイナーが書く<span lang="en">jQuery</span>見てみ、フラットで逐次的で設定ファイル的で逆に鱗落ものだから笑。それをわざわざ入れ子にさせたり抽象化の仕組みを入れてみたりと、作業する者の知能を考慮したら絶対にやっちゃいけないことのオンパレード。ひどい仕打ちだろ笑。</p>
-<p>そもそも私みたいに<abbr lang="en" title="Netscape Navigator">NN</abbr>向けに<abbr lang="en">JSSS</abbr>をリアルタイムで普通に書いていたジジイからしたら負の遺産の再発明にしか見えないよ。というかどうしても処理手順を書きたきゃ<abbr lang="en">JS</abbr>で<abbr lang="en">CSS</abbr>を弄りゃ良いじゃん、今どきオフにしている人なんてギガ欠乏期の人だけだろうし。</p>
+<h3><span xml:lang="en">github</span>での編集だけで書いていたが</h3>
+<p>やはり反映の遅さを我慢できなくなってローカルで書く事にした。データ(<abbr xml:lang="en">HTML</abbr>など)や設定(<abbr xml:lang="en">CSS</abbr>など)のインデントが個人的に本当に嫌いなのでこの機に全て削除した。</p>
+<p>この個人的好みを正しいものと仮定して、今の世の中には明らかに間違った方向が実在する。<abbr xml:lang="en">SCSS</abbr>のこと。あのね、フラットだからみんな書けるの。デザイナーが書く<span xml:lang="en">jQuery</span>見てみ、フラットで逐次的で設定ファイル的で逆に鱗落ものだから笑。それをわざわざ入れ子にさせたり抽象化の仕組みを入れてみたりと、作業する者の知能を考慮したら絶対にやっちゃいけないことのオンパレード。ひどい仕打ちだろ笑。</p>
+<p>そもそも私みたいに<abbr xml:lang="en" title="Netscape Navigator">NN</abbr>向けに<abbr xml:lang="en">JSSS</abbr>をリアルタイムで普通に書いていたジジイからしたら負の遺産の再発明にしか見えないよ。というかどうしても処理手順を書きたきゃ<abbr xml:lang="en">JS</abbr>で<abbr xml:lang="en">CSS</abbr>を弄りゃ良いじゃん、今どきオフにしている人なんてギガ欠乏期の人だけだろうし。</p>
 </section>
 </article>
 <article id="ID_TIME_STAMP_1657903121448">
@@ -172,15 +172,15 @@ console.table(Object.fromEntries(entries_proxied));</code><br />
 <section>
 <h3>面倒くさいは老化の特徴。</h3>
 <ul>
-<li><p>何年も <span lang="en">Windows</span>を所有していないからどうでもいいが、なんとなくトライアンドエラーでやっていた事がはっきり解った。</p>
-<dl lang="en">
+<li><p>何年も <span xml:lang="en">Windows</span>を所有していないからどうでもいいが、なんとなくトライアンドエラーでやっていた事がはっきり解った。</p>
+<dl xml:lang="en">
 <dt><a href="https://dev.mysql.com/doc/refman/8.0/en/option-files.html#option-file-syntax">MySQL 8.0 Reference Manual / ... / Option File Syntax</a></dt>
 <dd><blockquote cite="https://dev.mysql.com/doc/refman/8.0/en/option-files.html#option-file-syntax"><p>The escaping rules for option file values are especially pertinent <em>for Windows path names</em>, which use <code>\</code> as a path name separator. A separator in a Windows path name must be written as <code>\\</code> <em>if it is followed by an escape sequence character</em>. It can be written as <code>\\</code> or <code>\</code> <em>if it is not</em>.</p></blockquote></dd>
 <dt><a href="https://dev.mysql.com/doc/refman/8.0/en/option-files.html#option-file-inclusions">MySQL 8.0 Reference Manual / ... / Option File Inclusions</a></dt>
 <dd><blockquote cite="https://dev.mysql.com/doc/refman/8.0/en/option-files.html#option-file-inclusions"><p>For inclusion directives to work, the file path should <em>not</em> be specified within quotes and should have <em>no</em> escape sequences.</p></blockquote></dd>
 </dl></li>
 <li><p>こういうの書く人には感謝するが、自分は面倒くさいから書くことはない。</p>
-<dl lang="en">
+<dl xml:lang="en">
 <dt><a href="https://mariadb.com/kb/en/configuring-mariadb-with-option-files/#option-prefixes">MariaDB Option Prefixes</a></dt>
 <dd><blockquote cite="https://mariadb.com/kb/en/configuring-mariadb-with-option-files/#option-prefixes"><table><thead><tr><th>Option Prefix</th><th>Description</th></tr></thead><tbody>
 <tr><td><code><a href="https://mariadb.com/kb/en/mysqld-options/#-autoset-">autoset</a></code></td><td>Sets the option value automatically. Only supported for certain options. Available in <a href="https://mariadb.com/kb/en/mariadb-1017-release-notes/">MariaDB 10.1.7</a> and later.</td></tr>
@@ -203,7 +203,7 @@ console.table(Object.fromEntries(entries_proxied));</code><br />
 <article id="ID_TIME_STAMP_1657555918594">
 <section>
 <h3>いささかトリッキーな感じだが</h3>
-<code lang="en">new Promise((form =&gt; form.addEventListener.bind(form, 'submit'))(document.forms.namedItem('...')))<br />
+<code xml:lang="en">new Promise((form =&gt; form.addEventListener.bind(form, 'submit'))(document.forms.namedItem('...')))<br />
 .then(e =&gt; {...; return e}).then(e =&gt; {...; return e})....catch(error => {...})/*.finally(...)*/;</code><br />
 は最初のイベント発生時に実行されるだけ。</p>
 </section>
@@ -220,7 +220,7 @@ console.table(Object.fromEntries(entries_proxied));</code><br />
 </article>
 <article id="ID_TIME_STAMP_1657462591703">
 <section>
-<h3>好きに<abbr lang="en">HTML</abbr>を書く。</h3>
+<h3>好きに<abbr xml:lang="en">HTML</abbr>を書く。</h3>
 <p>それなりに楽しいが不安になる。</p>
 <p>知的に高度に構築されつつあったものが悉く現実に拒絶された後の祭状態やな。</p>
 </section>
