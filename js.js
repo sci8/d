@@ -23,6 +23,18 @@ new Promise(addEventListener.bind(this, 'DOMContentLoaded'))
         }
         sheet.disabled = false;
     });
+    Promise.resolve(['abbr, acronym', 'abbr[title], acronym[title]'])
+    .then(([selector_abac, selector_abac_title]) => {
+        const abacs = [...document.body.querySelectorAll(selector_abac)];
+        for (const abac_title of document.querySelectorAll(selector_abac_title)) {
+            const {title, textContent: textContent_abac_title} = abac_title;
+            const abac = abacs.filter(_ => !abac_title.isSameNode(_)).find(({textContent: textContent_abac}) => textContent_abac == textContent_abac_title);
+            if (abac) {
+                abac.setAttribute('title', title);
+                abac_title.removeAttribute('title');
+            }
+        }
+    });
     return e;
 })
 .then(() => undefined)
