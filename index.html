@@ -69,7 +69,7 @@
 <p>とりあえず知りたいのって次の5つじゃないか？</p>
 <ul>
 <li>非同期処理は<em>実際のところ</em>処理の後回し。</li>
-<li>コンストラクタの<span xml:lang="en"><var>resolve</var>, <var>reject</var></span>という名前の仮引数は内部の目印。関数扱いすること。また、必ずしもこの名前である必要がないというか<a href="#ID_TIME_STAMP_1657555918594">名前すら不要</a>。<ul>
+<li>コンストラクタの引数は関数。それの<span xml:lang="en"><var>resolve</var>, <var>reject</var></span>という名前の仮引数は内部の目印。共に関数扱いされるし関数扱いすること。また、必ずしもこの名前である必要がないというか<a href="#ID_TIME_STAMP_1657555918594">名前すら不要</a>。<ul>
 <li><code xml:lang="en">resolve()</code>は<code xml:lang="en">return</code>にかなり似ている。違いは<code xml:lang="en">resolve()</code>より後に続くコードも実行される。</li>
 <li><code xml:lang="en">reject()</code>は<code xml:lang="en">throw</code>にかなり似ている。違いは<code xml:lang="en">reject()</code>より後に続くコードも実行される。</li>
 </ul></li>

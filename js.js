@@ -43,3 +43,11 @@ new Promise(addEventListener.bind(this, 'DOMContentLoaded'))
         console.error(error);
     }
 });
+
+document.addEventListener('mouseover', e => {
+    try {
+        console.log((({title, textContent}) => `${textContent} : ${title}`)([...document.querySelectorAll('abbr[title], acronym[title]')].find((abac => ({textContent}) => textContent == abac.textContent)(e.target.closest('abbr:not([title]), acronym:not([title])')))));
+    } catch {
+        ;
+    }
+});
