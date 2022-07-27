@@ -20,6 +20,14 @@
 <math xmlns="http://www.w3.org/1998/Math/MathML" xml:lang="en">
 </math>
 -->
+<article id="ID_TIME_STAMP_">
+<section>
+<h3><span xml:lang="en">Docker</span>が更新しろしろと面倒くさい。</h3>
+<p>使わんし。こういう仮想化環境の類は流行を垣間見る為だけの目的でかれこれ15年くらいインストールだけして放置しているが、これほどウザいのは初だな。いわゆる<abbr title="system integrator" xml:lang="en">SIer</abbr>がかなり積極的に仮想化環境を推してきていたのがリーマンショックの頃だったかな、当時予算が厳しい企業に対してリプレイスのコストにおけるメリットを強弁しつつの営業戦略だったように記憶している。要するに良いイメージが全く無いという笑。その直後あたりから本屋に個人向け仮想化環境の実用書が爆増した。</p>
+<p>好き嫌いとは別に、ホンマに使わんのよね。個人的には20年以上前からえっちらおっちら<span xml:lang="en">FreeBSD</span>や<span xml:lang="en">Linux</span>をインストールして使っているし<abbr title="virtual private network" xml:lang="en">VPN</abbr>や<abbr title="internet protocol security" xml:lang="en">IPSec</abbr>でリモート作業し続けてきたわけで、2010年代以降の簡単便利になった時代に今更のように態々あえて仮想化環境で<span xml:lang="en">Linux</span>するモチベーションが無い。</p>
+<p>しかし<span xml:lang="en">venv</span>くらいは使うわけだが、こういう簡素で大人しいのだけでいいよ。<span xml:lang="en">Docker</span>ホンマにウザい。</p>
+</section>
+</article>
 <article id="ID_TIME_STAMP_1658866439019">
 <section>
 <h3>体感的に昨日がいちばん暑かった</h3>
@@ -79,7 +87,7 @@
 <article id="ID_TIME_STAMP_1658252007112">
 <section>
 <h3>ミリ秒</h3>
-<p><span xml:lang="en">mariadb</span>でいわゆる<span xml:lang="en">unix time</span>を<var>13</var>桁の<code xml:lang="en">BIGINT</code>にしている。これを<span xml:lang="en">node-mariadb</span>で読むと<code xml:lang="en">BigInt</code>になる。</p>
+<p><span xml:lang="en">mariadb</span>でいわゆる<span xml:lang="en">unix time</span>を<var>13</var>桁の<code xml:lang="en">BIGINT</code>にしている。これを<span xml:lang="en">node-mariadb</span>で読むとデフォルトで<code xml:lang="en">BigInt</code>になる。</p>
 <p>原因を調べていないが</p>
 <ul xml:lang="en">
 <li><code>.map(record => new Proxy(record, {get: (t, p, r) =&gt; p == 'foo' ? Number(t[p]) : Reflect.get(t, p, r)}))</code></li>
@@ -89,6 +97,7 @@
 <li><code>.map(({foo, bar}) => ({foo: Number(foo), bar}))</code></li>
 </ul>
 <p>のような処理にした(もちろん意図通りの値を返す)。</p>
+<p>もし<code xml:lang="en">BIGINT</code>がこの<var xml:lang="en">timeStamp</var>だけなら、<code xml:lang="en"><var>bigIntAsNumber</var>: true</code>みたいにオプションを適切に設定すれば良いだけだが、他にも<code xml:lang="en">BIGINT</code>はあるから却下だな。</p>
 <ins datetime="2022-07-24T13:46:12Z"><p>もしかしたら<br />
 <code xml:lang="en">const entries = [['20220719', {usd_jpy: 137.908}], ['20220724', {usd_jpy: 136.136}]];<br />
 console.table(entries);<br />
@@ -171,7 +180,7 @@ console.table(Object.fromEntries(entries_proxied));</code><br />
 <section>
 <h3>数学・算数の試験で解き方を強制されるのは</h3>
 <p>院試からだと思う。それまでは好きにして良いはず。</p>
-<p>大人に対する未修範囲から出題してはいけないという制約を勝手独自に混同して子供も未修範囲の解き方をしてはいけないと変な誤解に陥っているだけじゃないかな。正しい理解が適切に解答に示されていれば未修か既習かなんて採点者は関知しないはず。</p>
+<p>『未修範囲から出題してはいけない』とは大人に対する制約。それをアホな大人が勝手独自に混同して子供も未修範囲の解き方をしてはいけないと変な誤解に陥っているだけじゃないかな。正しい理解が適切に解答に示されていれば未修か既習かなんて採点者は関知しないはず。</p>
 <p>というか15年くらい昔の東工大の院試に3辺が正整数で具体的に与えられた三角形の面積を求めさせる問題があって、それをヘロンの公式だかなんだかで解いても点数あるのかと疑問に思ったことがある。センター試験じゃないんだから。数値は記憶に無いが、例えば<var>12,17,25</var>みたいな、物理系工学系なら秒殺できて当然の数値だった。これをえっちらおっちら高校代数幾何で出てきたような公式で解いて点数あるとはとても思えないんだけどな。</p>
 </section>
 </article>

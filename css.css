@@ -34,6 +34,12 @@ color: rgb(25, 25, 112);
 }
 em {
 text-decoration-line: underline;
+text-decoration-color: rgb(25, 25, 112);
+}
+abbr[title], acronym[title] {
+text-decoration-line: underline;
+text-decoration-style: dotted;
+text-decoration-color: rgb(25, 25, 112);
 }
 :link {
 color: rgb(10, 186, 181);
