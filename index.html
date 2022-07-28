@@ -20,7 +20,15 @@
 <math xmlns="http://www.w3.org/1998/Math/MathML" xml:lang="en">
 </math>
 -->
-<article id="ID_TIME_STAMP_">
+<article id="ID_TIME_STAMP_1659033675876">
+<section>
+<h3><span xml:lang="en">mariadb</span>用に<span xml:lang="en">.cnf, .ini</span>パーサーを書いたら</h3>
+<p>時間かかり過ぎて凹んだ。脳の加齢は万人に平等、辛いねえ。</p>
+<p>そもそもどういうものだと自分に使い易いかを考えて、<span xml:lang="en">python</span>の<span xml:lang="en">configparser</span>を使い慣れていたかなと思って検索したらそのものズバリがあったので使っていた。もちろん<code xml:lang="en">extends</code>して自分好みにして使っていたが、やっぱり依存をできる限り消したいのと、このくらいはサクッと書けよ自分と思いつつも、常識的に考えてそんな車輪のなんちゃらは不要なはずだから放置していた。</p>
+<p>まあ、サクッとどころかダラダラながらいちおう形になったから、自作のそれと差し替えた。<code xml:lang="en">readline.on('close', resolve)</code>しているので<code xml:lang="en">constructor</code>直下で呼べなくなった笑。</p>
+</section>
+</article>
+<article id="ID_TIME_STAMP_1658947366442">
 <section>
 <h3><span xml:lang="en">Docker</span>が更新しろしろと面倒くさい。</h3>
 <p>使わんし。こういう仮想化環境の類は流行を垣間見る為だけの目的でかれこれ15年くらいインストールだけして放置しているが、これほどウザいのは初だな。いわゆる<abbr title="system integrator" xml:lang="en">SIer</abbr>がかなり積極的に仮想化環境を推してきていたのがリーマンショックの頃だったかな、当時予算が厳しい企業に対してリプレイスのコストにおけるメリットを強弁しつつの営業戦略だったように記憶している。要するに良いイメージが全く無いという笑。その直後あたりから本屋に個人向け仮想化環境の実用書が爆増した。</p>
