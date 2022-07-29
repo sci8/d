@@ -25,7 +25,7 @@
 <h3><span xml:lang="en">mariadb</span>用に<span xml:lang="en">.cnf, .ini</span>パーサーを書いたら</h3>
 <p>時間かかり過ぎて凹んだ。脳の加齢は万人に平等、辛いねえ。</p>
 <p>そもそもどういうものだと自分に使い易いかを考えて、<span xml:lang="en">python</span>の<span xml:lang="en">configparser</span>を使い慣れていたかなと思って検索したらそのものズバリがあったので使っていた。もちろん<code xml:lang="en">extends</code>して自分好みにして使っていたが、やっぱり依存をできる限り消したいのと、このくらいはサクッと書けよ自分と思いつつも、常識的に考えてそんな車輪のなんちゃらは不要なはずだから放置していた。</p>
-<p>まあ、サクッとどころかダラダラながらいちおう形になったから、自作のそれと差し替えた。<code xml:lang="en">readline.on('close', resolve)</code>しているので<code xml:lang="en">constructor</code>直下で呼べなくなった笑。</p>
+<p>まあ、サクッとどころかダラダラながらいちおう形になったから差し替えた。<code xml:lang="en">readline.on('close', resolve)</code>しているので<code xml:lang="en">constructor</code>直下で呼べなくなった笑。</p>
 </section>
 </article>
 <article id="ID_TIME_STAMP_1658947366442">
@@ -76,7 +76,7 @@
 <p>不慣れな入門者が書いている笑。そんなもん書いていないで実験しまくれよとしか笑。</p>
 <p>とりあえず知りたいのって次の5つじゃないか？</p>
 <ul>
-<li>非同期処理は<em>実際のところ</em>処理の後回し。</li>
+<li>非同期処理は<em>実際のところ</em>処理の後回し。後から理想的に同時スタートっぽくなるとしたら、そもそも非同期にしなくても十分高速に回るというのが現実かなと思う。</li>
 <li>コンストラクタの引数は関数。それの<span xml:lang="en"><var>resolve</var>, <var>reject</var></span>という名前の仮引数は内部の目印。共に関数扱いされるし関数扱いすること。また、必ずしもこの名前である必要がないというか<a href="#ID_TIME_STAMP_1657555918594">名前すら不要</a>。<ul>
 <li><code xml:lang="en">resolve()</code>は<code xml:lang="en">return</code>にかなり似ている。違いは<code xml:lang="en">resolve()</code>より後に続くコードも実行される。</li>
 <li><code xml:lang="en">reject()</code>は<code xml:lang="en">throw</code>にかなり似ている。違いは<code xml:lang="en">reject()</code>より後に続くコードも実行される。</li>
@@ -90,6 +90,7 @@
 <h3>『いきなり<code xml:lang="en">.then()</code>』</h3>
 <p>は必要かなと思う。どういうことかと言うと<code xml:lang="en">new Class().method().then()</code>の<code xml:lang="en">.method()</code>を忘れても大丈夫なように作っておいても悪くはないだろうと思う。</p>
 <p>例えば<code xml:lang="en">new TXNs(...).fetch().then(...)</code>の<code xml:lang="en">.fetch()</code>みたいな常に呼ばれるに決まっているであろうメソッドのこと。</p>
+<ins datetime="2022-07-29T15:56:19Z"><p>必ず<code xml:lang="en"><em>async</em> then(cb) {...}</code>みたいに<code xml:lang="en">async</code>を明示して定義すること。じゃないと<code xml:lang="en">.catch()</code>をチェーンしても無意味になる。</p></ins>
 </section>
 </article>
 <article id="ID_TIME_STAMP_1658252007112">
