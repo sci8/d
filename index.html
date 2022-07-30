@@ -20,6 +20,28 @@
 <math xmlns="http://www.w3.org/1998/Math/MathML" xml:lang="en">
 </math>
 -->
+<article id="ID_TIME_STAMP_1659205390735">
+<section>
+<h3><code xml:lang="en">0 &lt; n &lt; Number.EPSILON</code>と誤記して暫く気付かなかった。</h3>
+<p>以下の通り。</p>
+<pre xml:lang="en"><samp>&gt; Number(true)
+1
+> Number(false)
+0
+&gt; 0 &lt; .1
+true
+&gt; .1 &lt; .2
+true
+&gt; 0 &lt; .1 &lt; .2 // Number(0 &lt; .1) &lt; .2
+<strong>false</strong>
+&gt; 1 &lt; 1.1
+true
+&gt; 1.1 &lt; 1.2
+true
+&gt; 1 &lt; 1.1 &lt; 1.2 // Number(1 &lt; 1.1) &lt; 1.2
+<strong>true</strong></samp></pre>
+</section>
+</article>
 <article id="ID_TIME_STAMP_1659033675876">
 <section>
 <h3><span xml:lang="en">mariadb</span>用に<span xml:lang="en">.cnf, .ini</span>パーサーを書いたら</h3>
