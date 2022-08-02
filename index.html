@@ -20,6 +20,37 @@
 <math xmlns="http://www.w3.org/1998/Math/MathML" xml:lang="en">
 </math>
 -->
+<article id="ID_TIME_STAMP_1659456883285">
+<section>
+<h3>中1夏休み宿題を</h3>
+<p>目の前でやっていた。どうやら今の過程では素数と素因数分解を中学の最初に習うらしい。おもむろに<abbr title="macbook pro" xml:lang="en">MBP</abbr>を開いて</p>
+<pre xml:lang="en"><code>function toPFD(m) {
+    const ps = [];
+    const o = 'o';
+    const r = new RegExp(&#96;^(${o.repeat(2)}+?)\\1+\$&#96;);
+    let s = o.repeat(m);
+    for (let match = s.match(r); match; match = s.match(r)) {
+        ps.push(match[1].length);
+        s = o.repeat(Number((s.length / match[1].length).toFixed(0)));
+    }
+    ps.push(s.length);
+    return ps;
+}
+function isPrime(m) {
+    return m == 1 ? false : this.toPFD(m).length == 1;
+}</code></pre>
+<p>と書いて答え合わせしてやったらえらく感動された。どうやら今時の子どもはプログラムを書ける人を凄いと思うらしい。</p>
+<p>これは<span xml:lang="en">perl cookbook</span>で読んで20年ほど前から使わせてもらっているから純然たる暗記の反芻でしかないわけだがと内心苦笑した。本来は素数判定が先んじるべきだがこの正規表現応用が記憶に染み付いてしまっている。</p>
+<p><code xml:lang="en">[@@matchAll]</code>で一行再帰で書けないかと少しやってみたがかなり汚くなるので止めた。その過程で</p>
+<pre xml:lang="en"><samp>&gt; r = /^(oo+?)\1+$/g;
+/^(oo+?)\1+$/g
+&gt; Array.from('o'.repeat(100).matchAll(r))<strong>.flatMap</strong>(([_0, _1]) =&gt; _0 ? _0.length / _1.length : 1);
+[ 50 ]
+&gt; Array.from('o'.repeat(100).matchAll(r))<strong>.map</strong>(([_0, _1]) =&gt; _0 ? _0.length / _1.length : 1);
+[ 50 ]</samp></pre>
+<p>のように<var xml:lang="en">Array#flatMap()</var>と<var xml:lang="en">Array#map()</var>が結果同じになるという事例に遭遇した。</p>
+</section>
+</article>
 <article id="ID_TIME_STAMP_1659205390735">
 <section>
 <h3><code xml:lang="en">0 &lt; n &lt; Number.EPSILON</code>と誤記して暫く気付かなかった。</h3>
