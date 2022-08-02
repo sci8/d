@@ -49,6 +49,8 @@ function isPrime(m) {
 &gt; Array.from('o'.repeat(100).matchAll(r))<strong>.map</strong>(([_0, _1]) =&gt; _0 ? _0.length / _1.length : 1);
 [ 50 ]</samp></pre>
 <p>のように<var xml:lang="en">Array#flatMap()</var>と<var xml:lang="en">Array#map()</var>が結果同じになるという事例に遭遇した。当たり前ではあるものの、無意味に<var xml:lang="en">Array#flatMap()</var>を使って気づいていない場合があるかもしれない。</p>
+<ins datetime="2022-08-02T18:07:00Z"><p>やっぱり<span xml:lang="en">Google Chrome</span>の&lt;pre&gt;要素のスタイルが変。空白文字を独自の扱いしてんのかな。今の仕様が『<a href="https://drafts.csswg.org/css-text/#white-space-property" hreflang="en" xml:lang="en">3. White Space and Wrapping: the white-space property</a>』であるとして、どの値にも該当しない扱いで空白文字を処理している。もしかしたら<a href="https://drafts.csswg.org/css-text/#valdef-white-space-nowrap" hreflang="en" xml:lang="en"><var>nowrap</var></a>の空白文字扱いにある<q cite="https://drafts.csswg.org/css-text/#valdef-white-space-nowrap" xml:lang="en">Like <var>normal</var>, this value collapses white space;</q>だけを切り取り読みして空白文字のまとめ方を自分ルールでやっちゃったのかな？しかしこの<span xml:lang="en">Like normal</span>は<q cite="https://drafts.csswg.org/css-text/#valdef-white-space-normal" xml:lang="en">This value directs user agents to collapse sequences of white space into <em>a single</em> character (or in some cases, <em>no character</em>).</q>に倣うようにと解釈するのが自然だと思うけどな。</p>
+<p>(もちろん言うまでもなくこのブラウザデフォルト値の<a href="https://drafts.csswg.org/css-text/#valdef-white-space-pre" hreflang="en" xml:lang="en"><var>pre</var></a>に然るべき表示ではないわけで……。)</p></ins>
 </section>
 </article>
 <article id="ID_TIME_STAMP_1659205390735">
