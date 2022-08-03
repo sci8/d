@@ -23,7 +23,8 @@
 <article id="ID_TIME_STAMP_1659544495420">
 <section>
 <h3><code xml:lang="en">defer</code>属性と<code xml:lang="en">async</code>属性をそれぞれ指定した2つの<code xml:lang="en">&lt;SCRIPT&gt;</code>要素で読み込んだ内容が</h3>
-<p><span xml:lang="en">defer</span>→<span xml:lang="en">async</span>の順に実行される。スクリプト内容は全く同じ<code xml:lang="en">console.log('...')</code>だけで、しかも<span xml:lang="en">async</span>属性有りを<abbr xml:lang="en">HTML</abbr>ソース出現順序で先に書いているのに、このように<span xml:lang="en">defer</span>が先になる。本来はスクリプト要素オブジェクトの<var xml:lang="en">load</var>時に非同期実行が始まるのとドキュメントオブジェクトの<var xml:lang="en">DOMContentLoaded</var>時に実行が始まる違いがあるわけで、しかも<abbr xml:lang="en">HTML</abbr>ソース出現順によって読み込み開始は<span xml:lang="en">async</span>有りの方が先になる。更にはスクリプト内容と<abbr xml:lang="en">HTML</abbr>ソースに量的大差をつけていて、これがそのまま実行順序に大きく影響するとふつうは考えられるが、現実の結果は逆。要するに実行までの順番を勝手に見込んじゃ駄目ってことだな。</p>
+<p><span xml:lang="en">defer</span>→<span xml:lang="en">async</span>の順に実行される。スクリプト内容は全く同じ<code xml:lang="en">console.log('...')</code>だけで、しかも<span xml:lang="en">async</span>属性有りを<abbr xml:lang="en">HTML</abbr>ソース出現順序で先に書いているのに、このように<span xml:lang="en">defer</span>が先になる。本来はスクリプト要素オブジェクトの<var xml:lang="en">load</var>時に<em>非同期実行</em>が始まるのとドキュメントオブジェクトの<var xml:lang="en">DOMContentLoaded</var>時に<em>実行</em>が始まる違いがあるわけで、しかも<abbr xml:lang="en">HTML</abbr>ソース出現順によって読み込み開始は<span xml:lang="en">async</span>有りの方が先になる。更にはスクリプト内容と<abbr xml:lang="en">HTML</abbr>ソースに量的大差をつけていて、これがそのまま実行順序に大きく影響するとふつうは考えられるが、現実の結果は逆。<em><code xml:lang="en">async</code>後回しの法則</em>だな笑。</p>
+<p>たとえば<span xml:lang="en">Node.js</span>の<var xml:lang="en">HTTP</var>モジュールのドキュメントみたいに時系列のイベント詳細が欲しい。各自で実験してみてブラックボックスを探るなんてナンセンスだよな。</p>
 </section>
 </article>
 <article id="ID_TIME_STAMP_1659456883285">
