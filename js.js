@@ -1,6 +1,5 @@
 'use strict';
-new Promise(addEventListener.bind(this, 'DOMContentLoaded'))
-.then(e => {
+document.addEventListener('DOMContentLoaded', e => {
     Promise.resolve('[id^="ID_TIME_STAMP_"]')
     .then(selector_article => {
         const {sheet} = document.head.appendChild(document.createElement('style'));
@@ -23,11 +22,8 @@ new Promise(addEventListener.bind(this, 'DOMContentLoaded'))
         }
         sheet.disabled = false;
     })
-    .catch(error => {
-        if (location.protocol == 'file:') {
-            console.error(error);
-        }
-    });
+    .catch(console.error);
+
     Promise.resolve(['abbr, acronym', 'abbr[title], acronym[title]'])
     .then(([selector_abac, selector_abac_title]) => {
         const abacs = Array.from(document.body.querySelectorAll(selector_abac));
@@ -40,17 +36,10 @@ new Promise(addEventListener.bind(this, 'DOMContentLoaded'))
             }
         }
     })
-    .catch(error => {
-        if (location.protocol == 'file:') {
-            console.error(error);
-        }
-    });
-    return e;
-})
-.then(() => undefined)
-.catch(error => {
+    .catch(console.error);
+
     if (location.protocol == 'file:') {
-        console.error(error);
+        console.log(e);
     }
 });
 
