@@ -5,7 +5,7 @@ new Promise(addEventListener.bind(this, 'DOMContentLoaded'))
     .then(selector_article => {
         const {sheet} = document.head.appendChild(document.createElement('style'));
         sheet.disabled = true;
-        sheet.ownerNode.setAttribute('title', [...document.styleSheets].find(({title}) => title).title);
+        sheet.ownerNode.setAttribute('title', Array.from(document.styleSheets).find(({disabled, title}) => !disabled && title).title);
         switch (sheet.title) {
             case 'heritage': {
                 sheet.insertRule(`${selector_article} {display: flex;}`, sheet.cssRules.length);
@@ -22,10 +22,15 @@ new Promise(addEventListener.bind(this, 'DOMContentLoaded'))
             time.setAttribute('datetime', time.appendChild(document.createTextNode(new Date(Number(article.id.match(/\d+$/))).toISOString().replace(/\.\d+/, ''))).wholeText);
         }
         sheet.disabled = false;
+    })
+    .catch(error => {
+        if (location.protocol == 'file:') {
+            console.error(error);
+        }
     });
     Promise.resolve(['abbr, acronym', 'abbr[title], acronym[title]'])
     .then(([selector_abac, selector_abac_title]) => {
-        const abacs = [...document.body.querySelectorAll(selector_abac)];
+        const abacs = Array.from(document.body.querySelectorAll(selector_abac));
         for (const abac_title of document.querySelectorAll(selector_abac_title)) {
             const {title, textContent: textContent_abac_title} = abac_title;
             const abac = abacs.filter(_ => !abac_title.isSameNode(_)).find(({textContent: textContent_abac}) => textContent_abac == textContent_abac_title);
@@ -33,6 +38,11 @@ new Promise(addEventListener.bind(this, 'DOMContentLoaded'))
                 abac.setAttribute('title', title);
                 abac_title.removeAttribute('title');
             }
+        }
+    })
+    .catch(error => {
+        if (location.protocol == 'file:') {
+            console.error(error);
         }
     });
     return e;
