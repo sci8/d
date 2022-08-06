@@ -82,7 +82,7 @@
         }
     }
 }</code></pre>
-<p>異常終了せずに動く。しかし遅過ぎて使えないな(メモ化すりゃなんとか……)まあ一先ずはこれで良い。というか暇潰しなので良いも糞も無いが。とりあえず試してみた。</p>
+<p>10の階乗(3_628_800)ぶんすべてを出力したら異常終了せずに完遂した。しかし遅過ぎて使えないな(メモ化すりゃなんとか……)まあ一先ずはこれで良い。というか暇潰しなので良いも糞も無いが。とりあえず試してみた。</p>
 <pre xml:lang="en"><code>async function * P(a, n_of_<sub>m</sub>P<sub>n</sub>) {
     for await (const p_indices of P_indices(a.length, n_of_<sub>m</sub>P<sub>n</sub>)) {
         yield p_indices.map(i =&gt; a[i]);
