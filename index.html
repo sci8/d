@@ -20,6 +20,89 @@
 <math xmlns="http://www.w3.org/1998/Math/MathML" xml:lang="en">
 </math>
 -->
+<article id="ID_TIME_STAMP_1659801258913">
+<section>
+<h3>新たにプログラミング言語を学習する時に</h3>
+<p>作る何かは人それぞれかなと思われる。ネットを見てきた記憶では<abbr xml:lang="en" title="hypertext transfer protocol">HTTP</abbr>サーバー/クライアントを作るとか簡単な<abbr xml:lang="en" title="world internet knowledge index">wiki</abbr>を作るとかが割と多いかなと思うが、見ず知らずのみなさんの学習が速くてその高い能力に舌をまく。</p>
+<p>まるで他人事のように言うと私はいつも順列か数独ソルバーを書くようで、いずれにせよ樹形図を脳内に描いてそれをコードにする作業となる。学習しているわけではないくせに手持ち無沙汰だったので何気に順列を書いてみた。私にはまず樹形図を探索するようなコードを書いてしまう悪い傾向がある。それはもう書く前から<samp xml:lang="en">RangeError: Maximum call stack size exceeded</samp>になるの分かっていても書いてしまう。</p>
+<pre xml:lang="en"><code>async function * P_indices_search(m, n, ...indices) {
+    switch (indices.length) {
+        case 0: {
+            yield * P_indices_search(m, n || m, 0);
+            break;
+        }
+        case n || m: {
+            yield indices.slice(0);
+            let i = indices.pop() + 1;
+            while (true) {
+                if (indices.includes(i)) {
+                    i += 1;
+                } else if (i == m) {
+                    if (indices.length == 0) {
+                        return;
+                    } else {
+                        i = indices.pop() + 1;
+                    }
+                } else {
+                    break;
+                }
+            }
+            yield * P_indices_search(m, n || m, ...indices, i);
+            break;
+        }
+        default: {
+            for (let i = 0; i &lt; m; i++) {
+                if (indices.includes(i)) {
+                    continue;
+                } else {
+                    yield * P_indices_search(m, n || m, ...indices, i);
+                    break;// for
+                }
+            }
+            break;
+        }
+    }
+}</code></pre>
+<p>案の定、使えなかった。6の階乗が精一杯だった。頭を切り替えてなるべくフラットに書いてみた。</p>
+<pre xml:lang="en"><code>async function * P_indices(m, n) {
+    if (n == undefined || Number.isNaN(n)) {
+        n = m;
+    }
+    if (n == 1) {
+        for (let i = 0; i &lt; m; i++) {
+            yield [i];
+        }
+        return;
+    } else {
+        for await (const p of P_indices(m, n - 1)) {
+            for (let i = 0; i &lt; m; i++) {
+                if (!p.includes(i)) {
+                    yield [...p, i];
+                }
+            }
+        }
+    }
+}</code></pre>
+<p>異常終了せずに動く。しかし遅過ぎて使えないな(メモ化すりゃなんとか……)まあ一先ずはこれで良い。というか暇潰しなので良いも糞も無いが。とりあえず試してみた。</p>
+<pre xml:lang="en"><code>async function * P(a, n_of_<sub>m</sub>P<sub>n</sub>) {
+    for await (const p_indices of P_indices(a.length, n_of_<sub>m</sub>P<sub>n</sub>)) {
+        yield p_indices.map(i =&gt; a[i]);
+    }
+}
+for await (const p of P(process.argv.slice(2))) {
+    console.log(p);
+}</code>
+
+<samp>$ node permutation.js a b c
+[ 'a', 'b', 'c' ]
+[ 'a', 'c', 'b' ]
+[ 'b', 'a', 'c' ]
+[ 'b', 'c', 'a' ]
+[ 'c', 'a', 'b' ]
+[ 'c', 'b', 'a' ]</samp></pre>
+<p>なんか虚しい。というかそもそも<var xml:lang="en">Iterator</var>は<var xml:lang="en">class</var>で書くべきなんだよな。暇潰しなので書き直さず終了。</p>
+</section>
+</article>
 <article id="ID_TIME_STAMP_1659544495420">
 <section>
 <h3><code xml:lang="en">defer</code>属性と<code xml:lang="en">async</code>属性をそれぞれ指定した2つの<code xml:lang="en">&lt;SCRIPT&gt;</code>要素で読み込んだ内容が</h3>
