@@ -24,7 +24,8 @@
 <section>
 <h3>新たにプログラミング言語を学習する時に</h3>
 <p>作る何かは人それぞれかなと思われる。ネットを見てきた記憶では<abbr xml:lang="en" title="hypertext transfer protocol">HTTP</abbr>サーバー/クライアントを作るとか簡単な<abbr xml:lang="en" title="world internet knowledge index">wiki</abbr>を作るとかが割と多いかなと思うが、見ず知らずのみなさんの学習が速くてその高い能力に舌をまく。</p>
-<p>まるで他人事のように言うと私はいつも順列か数独ソルバーを書くようで、いずれにせよ樹形図を脳内に描いてそれをコードにする作業となる。学習しているわけではないくせに手持ち無沙汰だったので何気に順列を書いてみた。私にはまず樹形図を探索するようなコードを書いてしまう悪い傾向がある。それはもう書く前から<samp xml:lang="en">RangeError: Maximum call stack size exceeded</samp>になるの分かっていても書いてしまう。</p>
+<p>まるで他人事のように言うと私はいつも順列か数独ソルバーを書くようで、いずれにせよ樹形図を脳内に描いてそれをコードにする作業となる。学習しているわけではないくせに手持ち無沙汰だったので何気に順列を書いてみた。</p>
+<p>私にはまず樹形図を探索するようなコードを書いてしまう悪い傾向・癖がある。それはもう書く前から<samp xml:lang="en">RangeError: Maximum call stack size exceeded</samp>になるの分かっていても書いてしまう。</p>
 <pre xml:lang="en"><code>async function * P_indices_search(m, n, ...indices) {
     switch (indices.length) {
         case 0: {
@@ -84,8 +85,9 @@
 }</code></pre>
 <p>10の階乗(3_628_800)ぶんすべてを出力したら異常終了せずに完遂した。しかし遅過ぎて使えないな(メモ化すりゃなんとか……)まあ一先ずはこれで良い。というか暇潰しなので良いも糞も無いが。とりあえず試してみた。</p>
 <pre xml:lang="en"><code>async function * P(a, n_of_<sub>m</sub>P<sub>n</sub>) {
-    for await (const p_indices of P_indices(a.length, n_of_<sub>m</sub>P<sub>n</sub>)) {
-        yield p_indices.map(i =&gt; a[i]);
+    const A = Array.from(a);
+    for await (const p_indices of P_indices(A.length, n_of_<sub>m</sub>P<sub>n</sub>)) {
+        yield p_indices.map(i =&gt; A[i]);
     }
 }
 for await (const p of P(process.argv.slice(2))) {
