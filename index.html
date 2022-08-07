@@ -25,7 +25,8 @@
 <h3>新たにプログラミング言語を学習する時に</h3>
 <p>作る何かは人それぞれかなと思われる。ネットを見てきた記憶では<abbr xml:lang="en" title="hypertext transfer protocol">HTTP</abbr>サーバー/クライアントを作るとか簡単な<abbr xml:lang="en" title="world internet knowledge index">wiki</abbr>を作るとかが割と多いかなと思うが、見ず知らずのみなさんの学習が速くてその高い能力に舌をまく。</p>
 <p>まるで他人事のように言うと私はいつも順列か数独ソルバーを書くようで、いずれにせよ樹形図を脳内に描いてそれをコードにする作業となる。学習しているわけではないくせに手持ち無沙汰だったので何気に順列を書いてみた。</p>
-<p>私にはまず樹形図を探索するようなコードを書いてしまう悪い傾向・癖がある。それはもう書く前から<samp xml:lang="en">RangeError: Maximum call stack size exceeded</samp>になるの分かっていても書いてしまう。</p>
+<ol>
+<li><p>私にはまず樹形図を<em>探索するような</em>コードを書いてしまう悪い傾向・癖がある。それはもう書く前から<samp xml:lang="en">RangeError: Maximum call stack size exceeded</samp>になるの分かっていても書いてしまう。</p>
 <pre xml:lang="en"><code>async function * P_indices_search(m, n, ...indices) {
     switch (indices.length) {
         case 0: {
@@ -64,8 +65,9 @@
         }
     }
 }</code></pre>
-<p>案の定、使えなかった。6の階乗が精一杯だった。頭を切り替えてなるべくフラットに書いてみた。</p>
-<pre xml:lang="en"><code>async function * P_indices(m, n) {
+<p>案の定、使えなかった。6の階乗が精一杯だった。</p></li>
+<li><p>頭を切り替えて<em>なるべくフラットに</em>書いてみた。</p>
+<pre xml:lang="en"><code>async function * P_indices_semiFlat(m, n) {
     if (n == undefined || Number.isNaN(n)) {
         n = m;
     }
@@ -74,7 +76,7 @@
             yield [i];
         }
     } else {
-        for await (const p of P_indices(m, n - 1)) {
+        for await (const p of P_indices_semiFlat(m, n - 1)) {
             for (let i = 0; i &lt; m; i++) {
                 if (!p.includes(i)) {
                     yield [...p, i];
@@ -83,7 +85,27 @@
         }
     }
 }</code></pre>
-<p>10の階乗(3_628_800)ぶんすべてを出力させたら問題無く完遂した。しかし遅過ぎて使えないな(メモ化すりゃなんとか……)まあ一先ずはこれで良い。というか暇潰しなので良いも糞も無いが。とりあえず試してみた。</p>
+<p>10の階乗(3_628_800)ぶんすべてを出力させたら問題無く完遂した。しかし遅い。</p></li>
+<li><p><em>再帰を消してみる。</em><span xml:lang="en">python</span>で言うと<var xml:lang="en">itertools.product()</var>からフィルターすることで<var xml:lang="en">itertools.permutations()</var>を作る。</p>
+<pre xml:lang="en"><code>async function * DP_indices(m, n) {
+    const J = n || m;
+    const I = m ** J;
+    for (let i = 0; i &lt; I; i++) {
+        const dp_indices = [];
+        for (let j = i; dp_indices.unshift(j % m) &lt; J; j = Number.parseInt(j / m));
+        yield dp_indices;
+    }
+}
+async function * P_indices(m, n) {
+    for await (const dp_indices of DP_indices(m, n)) {
+        if (new Set(dp_indices).size == dp_indices.length) {
+            yield dp_indices;
+        }
+    }
+}</code></pre>
+<p>まあ一先ずはこれで良い。というか暇潰しなので良いも糞も無いが。</p></li>
+</ol>
+<p>とりあえず試してみた。</p>
 <pre xml:lang="en"><code>async function * P(a, n_of_<sub>m</sub>P<sub>n</sub>) {
     const A = Array.from(a);
     for await (const p_indices of P_indices(A.length, n_of_<sub>m</sub>P<sub>n</sub>)) {
