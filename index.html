@@ -87,19 +87,15 @@
 }</code></pre>
 <p>10の階乗(3_628_800)ぶんすべてを出力させたら問題無く完遂した。しかし遅い。</p></li>
 <li><p><em>再帰を消してみる。</em><span xml:lang="en">python</span>で言うと<var xml:lang="en">itertools.product()</var>からフィルターすることで<var xml:lang="en">itertools.permutations()</var>を作る。</p>
-<pre xml:lang="en"><code>async function * DP_indices(m, n) {
+<pre xml:lang="en"><code>
+async function * P_indices(m, n) {
     const J = n || m;
     const I = m ** J;
     for (let i = 0; i &lt; I; i++) {
-        const dp_indices = [];
-        for (let j = i; dp_indices.unshift(j % m) &lt; J; j = Number.parseInt(j / m));
-        yield dp_indices;
-    }
-}
-async function * P_indices(m, n) {
-    for await (const dp_indices of DP_indices(m, n)) {
-        if (new Set(dp_indices).size == dp_indices.length) {
-            yield dp_indices;
+        const dps = [];
+        for (let j = i; dps.unshift(j % m) &lt; J; j = Number.parseInt(j / m));
+        if (new Set(dps).size == dps.length) {
+            yield dps;
         }
     }
 }</code></pre>
