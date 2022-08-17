@@ -20,6 +20,39 @@
 <math xmlns="http://www.w3.org/1998/Math/MathML" xml:lang="en">
 </math>
 -->
+<article id="ID_TIME_STAMP_1660688839928">
+<section>
+<h3>ルーチンワークで解ける漸化式を惰性で解いてしまったら</h3>
+<p>誤差はどこら辺で出るのか試してみた。</p>
+<p xml:lang="en"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>F</mi><mn>1</mn></msub><mo>=</mo><mn>0</mn><mo>,</mo></math><br />
+<math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>F</mi><mn>2</mn></msub><mo>=</mo><mn>0</mn><mo>,</mo></math><br />
+<math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>F</mi><mrow><mi>n</mi><mo>+</mo><mn>2</mn></mrow></msub><mo>=</mo><msub><mi>F</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>F</mi><mi>n</mi></msub><mo>+</mo><mn>1</mn><mo>, </mo><mrow><mo>(</mo><mi>n</mi><mo>&isin;</mo><mi mathvariant="double-struck">N</mi><mo>)</mo></mrow></math></p>
+<ul><li>そのまま翻訳して<br />
+<code xml:lang="en">const f = (F =&gt; n =&gt; n &lt; 3 ? 0 : (F[n - 2] ?? (F[n - 2] = f(n - 2))) + (F[n - 1] ?? (F[n - 1] = f(n - 1))) + 1)({});</code><br />
+を得る。これは正解を返す。</li>
+<li>解いた漸化式からは
+<pre xml:lang="en"><code>function φ(n) {
+    const n_2 = n - 2;
+    if (n_2 &lt;= 0) {
+        return 0;
+    }
+    const sqrt5 = Math.sqrt(5);
+    return Number((((3 + sqrt5) / 2 * ((1 + sqrt5) / 2) ** n_2 - (3 - sqrt5) / 2 * ((1 - sqrt5) / 2) ** n_2) / sqrt5 - 1).toFixed(0));
+}</code></pre>
+を得る。これは<code xml:lang="en">Math.sqrt()</code>の誤差が<var xml:lang="en">n</var>の増加で展開的に増加する。</li></ul>
+<pre xml:lang="en"><code>
+for (let i = 1; i &lt;= Number.MAX_SAFE_INTEGER; i++) {
+    const φi = φ(i);
+    const fi = f(i);
+    // console.log({i, φi, fi, eq: φi == fi});
+    if (φi != fi) {
+        console.log(i - 1);
+        break;
+    }
+}</code></pre>
+<p><samp xml:lang="en">70</samp>だった。面倒なので考察無しの結果まで。終了。</p>
+</section>
+</article>
 <article id="ID_TIME_STAMP_1659801258913">
 <section>
 <h3>新たにプログラミング言語を学習する時に</h3>
