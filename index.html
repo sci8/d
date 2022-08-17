@@ -30,7 +30,7 @@
 <ul><li>そのまま翻訳して<br />
 <code xml:lang="en">const f = (F =&gt; n =&gt; n &lt; 3 ? 0 : (F[n - 2] ?? (F[n - 2] = f(n - 2))) + (F[n - 1] ?? (F[n - 1] = f(n - 1))) + 1)({});</code><br />
 を得る。これは正解を返す。</li>
-<li>解いた漸化式からは
+<li>うっかりやってしまった解答からは
 <pre xml:lang="en"><code>function φ(n) {
     const n_2 = n - 2;
     if (n_2 &lt;= 0) {
