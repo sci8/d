@@ -36,6 +36,9 @@ em {
 text-decoration-line: underline;
 text-decoration-color: rgb(25, 25, 112);
 }
+.false {
+text-decoration-style: wavy;
+}
 abbr[title], acronym[title] {
 text-decoration-line: underline;
 text-decoration-style: dotted;

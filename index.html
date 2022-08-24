@@ -16,9 +16,43 @@
 </article>
 -->
 <!--
-<math xmlns="http://www.w3.org/1998/Math/MathML" xml:lang="en">
-</math>
+<math xmlns="http://www.w3.org/1998/Math/MathML" xml:lang="en"></math>
 -->
+<article id="ID_TIME_STAMP_1661361550392">
+<section>
+<h3>実数の絶対値</h3>
+<p>というか最初に習う時点においては有理数の絶対値を中学校で教わる。例外なくみんな符号を除去した数にすると勝手に解釈している。結果は正しい。何故なら文字式ではなく数値そのもので習うから。<br />
+しかし文字式で大雑把に言うとたとえば<math xmlns="http://www.w3.org/1998/Math/MathML"><mfenced open="|" close="|"><mi>a</mi></mfenced></math>ならば</p>
+<ol><li>まず<math xmlns="http://www.w3.org/1998/Math/MathML" xml:lang="en"><mrow><mo>-</mo><mi>a</mi></mrow></math>と<math xmlns="http://www.w3.org/1998/Math/MathML" xml:lang="en"><mrow><mi>a</mi></mrow></math>を作って、</li>
+<li>大小比較して小さくない方を採用する。</li></ol>
+<p>という手順を踏む。この大小比較に際して絶対値の中身の正負で場合分けが不可避になる。ここで中学生にとっても重要なのは場合分けが<strong>2</strong>つということ。これは大人も含めてほぼ壊滅的に意識できていないが覚えておいて損は無い。これは高校卒業までに必ず遭遇するであろう方程式</p>
+<ul><li><math xmlns="http://www.w3.org/1998/Math/MathML"><mfenced open="|" close="|"><mi>x</mi></mfenced><mo>+</mo><mfenced open="|" close="|"><mi>y</mi></mfenced><mo>=</mo><mn>1</mn></math> (菱形の<var>4</var>辺)</li>
+<li><math xmlns="http://www.w3.org/1998/Math/MathML"><mfenced open="|" close="|"><mi>x</mi></mfenced><mo>+</mo><mfenced open="|" close="|"><mi>y</mi></mfenced><mo>+</mo><mfenced open="|" close="|"><mi>z</mi></mfenced><mo>=</mo><mn>1</mn></math> (正八面体の<var>8</var>面)</li></ul>
+<p>で気付く人は気付く。<math xmlns="http://www.w3.org/1998/Math/MathML" xml:lang="en"><msup><mn>2</mn><mn>2</mn></msup></math>辺ぶんと<math xmlns="http://www.w3.org/1998/Math/MathML" xml:lang="en"><msup><mn>2</mn><mn>3</mn></msup></math>面ぶんの個数になる方程式がまとめて書けて『便利じゃないわけじゃない』との認識を誰もが持つ。</p>
+<p>臨機応変という言葉は極めて広い適用範囲で俗に使われるが、個人的には臨機応変に考えられる人は10万人に1人ほどしか実在しないと思っている。この場合分け2つの件にしたって、たとえば整数の配列があって、それをシャッフルした配列を作って、この2つの配列を同じインデックス順に引き算して絶対値を取って3つ目の配列を作るとして、この3つ目の配列の要素の総和は偶数になるわけだが、これを説明できる人は滅多にいない。絶対値を外す時の場合分けは高々2つなのだから最初の配列のある要素とシャッフル先のその要素を、絶対値を外した後に和の交換則で並べ替えて和の結合則で対応させてみると0倍か2倍か-2倍にしかなりえないわけだが、そこに考えが自力で至る人は実在するのかもしれないが現実には会ったことがない。<br />
+しかし全ての中学生に場合分け2つという事実を天下り式に暗記させたら、もしかしたら絶対値を外す時に高々2つならば何とかなるんじゃないかと思う人はもっともっと多くなるような気はする。</p>
+</section>
+</article>
+<article id="ID_TIME_STAMP_1661358001624">
+<section>
+<h3>2つのサイコロの目の合計が偶数の時</h3>
+<p>とりあえず全て書き出すと</p>
+<pre xml:lang="en"><code>&gt;&gt;&gt; from itertools import product
+&gt;&gt;&gt; [t for t in product([1, 2, 3, 4, 5, 6, ], repeat=2)]</code>
+<samp>[(1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6),
+ (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6),
+ (3, 1), (3, 2), (3, 3), (3, 4), (3, 5), (3, 6),
+ (4, 1), (4, 2), (4, 3), (4, 4), (4, 5), (4, 6),
+ (5, 1), (5, 2), (5, 3), (5, 4), (5, 5), (5, 6),
+ (6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6)]</samp></pre>
+<p>要するに小学生に樹形図を書かせるのと同じ。<br />
+この中で、たとえば合計が<var>4</var>になるのは</p>
+<pre xml:lang="en"><samp>(1, 3), (2, 2), (3, 1)</samp></pre>
+<p>の３通り。樹形図を書かせれば間違えようがない。しかし樹形図を書かせなかったら</p>
+<pre xml:lang="en"><samp>(1, 3), (2, 2), <em class="false">(2, 2)</em>, (3, 1)</samp></pre>
+<p>のような間違いが発生する場合がある。というかむしろ最初は書かせずにこの間違いを意図的に誘発しておいてから樹形図に立ち返らせると納得させられると共に慎重さが養われるかもしれない。</p>
+</section>
+</article>
 <article id="ID_TIME_STAMP_1661325034673">
 <section>
 <h3>いわゆる<code xml:lang="en">wait(milliseconds)</code></h3>
