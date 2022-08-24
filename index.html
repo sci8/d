@@ -25,7 +25,7 @@
 <ul><li>ごく普通に<pre xml:lang="en"><code>import {setTimeout} from 'node:timers/promises';
 await setTimeout(1000);</code></pre>特に0ミリ秒とか1ミリ秒でやりたいことを達成するには<pre xml:lang="en"><code>import {setImmediate} from 'node:timers/promises';
 await setImmediate();</code></pre>が用意されている。ブラウザでは使えないし非標準だから将来的にもブラウザでは使えないかもしれないがこういうの嫌いじゃないというか割と好き。</li>
-<li>2年くらい昔までなら<pre xml:lang="en"><code>await new Promise(resolve =&gt; setTimeout(resolve, 1000));</code></pre>みたいな感じかな、でも今更こんなの書かないからノイズだ。</li></ul>
+<li>2年くらい昔までなら<pre xml:lang="en"><code>await new Promise(resolve =&gt; setTimeout(resolve, 1000));</code></pre>みたいな感じかな、でも今更こんなの書かないからノイズだ。しかしブラウザだとまだまだずっとこれから先もこれを使うのかな。</li></ul>
 </section>
 </article>
 <article id="ID_TIME_STAMP_1661070577093">
