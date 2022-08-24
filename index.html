@@ -22,12 +22,12 @@
 <section>
 <h3>実数の絶対値</h3>
 <p>というか最初に習う時点においては有理数の絶対値を中学校で教わる。例外なくみんな符号を除去した数にすると勝手に解釈している。結果は正しい。何故なら文字式ではなく数値そのもので習うから。<br />
-しかし文字式で大雑把に言うとたとえば<math xmlns="http://www.w3.org/1998/Math/MathML"><mfenced open="|" close="|"><mi>a</mi></mfenced></math>ならば</p>
+しかし文字式で大雑把に言うとたとえば<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>|</mo><mi>a</mi><mo>|</mo></mrow></math>ならば</p>
 <ol><li>まず<math xmlns="http://www.w3.org/1998/Math/MathML" xml:lang="en"><mrow><mo>-</mo><mi>a</mi></mrow></math>と<math xmlns="http://www.w3.org/1998/Math/MathML" xml:lang="en"><mrow><mi>a</mi></mrow></math>を作って、</li>
 <li>大小比較して小さくない方を採用する。</li></ol>
 <p>という手順を踏む。この大小比較に際して絶対値の中身の正負で場合分けが不可避になる。ここで中学生にとっても重要なのは場合分けが<strong>2</strong>つということ。これは大人も含めてほぼ壊滅的に意識できていないが覚えておいて損は無い。これは高校卒業までに必ず遭遇するであろう方程式</p>
-<ul><li><math xmlns="http://www.w3.org/1998/Math/MathML"><mfenced open="|" close="|"><mi>x</mi></mfenced><mo>+</mo><mfenced open="|" close="|"><mi>y</mi></mfenced><mo>=</mo><mn>1</mn></math> (菱形の<var>4</var>辺)</li>
-<li><math xmlns="http://www.w3.org/1998/Math/MathML"><mfenced open="|" close="|"><mi>x</mi></mfenced><mo>+</mo><mfenced open="|" close="|"><mi>y</mi></mfenced><mo>+</mo><mfenced open="|" close="|"><mi>z</mi></mfenced><mo>=</mo><mn>1</mn></math> (正八面体の<var>8</var>面)</li></ul>
+<ul><li><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>|</mo><mi>x</mi><mo>|</mo></mrow><mo>+</mo><mrow><mo>|</mo><mi>y</mi><mo>|</mo></mrow><mo>=</mo><mn>1</mn></math> (菱形の<var>4</var>辺)</li>
+<li><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>|</mo><mi>x</mi><mo>|</mo></mrow><mo>+</mo><mrow><mo>|</mo><mi>y</mi><mo>|</mo></mrow><mo>+</mo><mrow><mo>|</mo><mi>z</mi><mo>|</mo></mrow><mo>=</mo><mn>1</mn></math> (正八面体の<var>8</var>面)</li></ul>
 <p>で気付く人は気付く。<math xmlns="http://www.w3.org/1998/Math/MathML" xml:lang="en"><msup><mn>2</mn><mn>2</mn></msup></math>辺ぶんと<math xmlns="http://www.w3.org/1998/Math/MathML" xml:lang="en"><msup><mn>2</mn><mn>3</mn></msup></math>面ぶんの個数になる方程式がまとめて書けて『便利じゃないわけじゃない』との認識を誰もが持つ。</p>
 <p>臨機応変という言葉は極めて広い適用範囲で俗に使われるが、個人的には臨機応変に考えられる人は10万人に1人ほどしか実在しないと思っている。この場合分け2つの件にしたって、たとえば整数の配列があって、それをシャッフルした配列を作って、この2つの配列を同じインデックス順に引き算して絶対値を取って3つ目の配列を作ると</p>
 <pre xml:lang="en"><code>irb(main):001:0&gt; a = Array.new(10) {rand 10}</code>
