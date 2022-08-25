@@ -30,14 +30,14 @@
 <li><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>|</mo><mi>x</mi><mo>|</mo></mrow><mo>+</mo><mrow><mo>|</mo><mi>y</mi><mo>|</mo></mrow><mo>+</mo><mrow><mo>|</mo><mi>z</mi><mo>|</mo></mrow><mo>=</mo><mn>1</mn></math> (正八面体の<var>8</var>面)</li></ul>
 <p>で気付く人は気付く。<math xmlns="http://www.w3.org/1998/Math/MathML" xml:lang="en"><msup><mn>2</mn><mn>2</mn></msup></math>辺ぶんと<math xmlns="http://www.w3.org/1998/Math/MathML" xml:lang="en"><msup><mn>2</mn><mn>3</mn></msup></math>面ぶんの個数になる方程式がまとめて書けて『便利じゃないわけじゃない』との認識を誰もが持つ。</p>
 <p>臨機応変という言葉は極めて広い適用範囲で俗に使われるが、個人的には臨機応変に考えられる人は10万人に1人ほどしか実在しないと思っている。この場合分け2つの件にしたって、たとえば整数の配列があって、それをシャッフルした配列を作って、この2つの配列を同じインデックス順に引き算して絶対値を取って3つ目の配列を作ると</p>
-<pre xml:lang="en"><code>irb(main):001:0&gt; a = Array.new(10) {rand 10}</code>
-<samp>=&gt; [8, 5, 8, 9, 5, 4, 9, 3, 8, 7]</samp>
-<code>irb(main):002:0&gt; b = a.shuffle</code>
-<samp>=&gt; [5, 4, 8, 3, 9, 8, 8, 5, 7, 9]</samp>
-<code>irb(main):003:0&gt; c = [a, b].transpose.map {|a, b| (a - b).abs}</code>
-<samp>=&gt; [3, 1, 0, 6, 4, 4, 1, 2, 1, 2]</samp>
-<code>irb(main):004:0&gt; c.sum</code>
-<samp>=&gt; 24</samp></pre>
+<pre xml:lang="en"><samp>irb(main):001:0&gt; </samp><kbd>a = Array.new(10) {rand 10}
+</kbd><samp>=&gt; [8, 5, 8, 9, 5, 4, 9, 3, 8, 7]
+irb(main):002:0&gt; </samp><kbd>b = a.shuffle
+</kbd><samp>=&gt; [5, 4, 8, 3, 9, 8, 8, 5, 7, 9]
+irb(main):003:0&gt; </samp><kbd>c = [a, b].transpose.map {|a, b| (a - b).abs}
+</kbd><samp>=&gt; [3, 1, 0, 6, 4, 4, 1, 2, 1, 2]
+irb(main):004:0&gt; </samp><kbd>c.sum
+</kbd><samp>=&gt; 24</samp></pre>
 <p>のようにこの3つ目の配列の要素の総和は偶数になり一般にもそうなるわけだが、これを説明できる人は滅多にいない。絶対値を外す時の場合分けは高々2つなのだから最初の配列のある要素とシャッフル先のその要素を、絶対値を外した後に和の交換則で並べ替えて和の結合則で対応させてみると0倍か2倍か-2倍にしかなりえないわけだが、そこに考えが自力で至る人は実在するのかもしれないが現実には会ったことがない。<br />
 しかし全ての中学生に場合分け2つという事実を天下り式に暗記させたら、もしかしたら絶対値を外す時に高々2つならば何とかなるんじゃないかと考えて前進できる人はもっともっと多くなるような気はする。</p>
 </section>
@@ -46,20 +46,21 @@
 <section>
 <h3>2つのサイコロの目の合計が偶数の時</h3>
 <p>とりあえず全て書き出すと</p>
-<pre xml:lang="en"><code>&gt;&gt;&gt; from itertools import product
-&gt;&gt;&gt; [t for t in product([1, 2, 3, 4, 5, 6, ], repeat=2)]</code>
-<samp>[(1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6),
+<pre xml:lang="en"><samp>&gt;&gt;&gt; </samp><kbd>from itertools import product
+</kbd><samp>&gt;&gt;&gt; </samp><kbd>[t for t in product([1, 2, 3, 4, 5, 6, ], repeat=2)]
+</kbd><samp>[(1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6),
  (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6),
  (3, 1), (3, 2), (3, 3), (3, 4), (3, 5), (3, 6),
  (4, 1), (4, 2), (4, 3), (4, 4), (4, 5), (4, 6),
  (5, 1), (5, 2), (5, 3), (5, 4), (5, 5), (5, 6),
  (6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6)]</samp></pre>
 <p>要するに小学生に樹形図を書かせるのと同じ。<br />
-この中で、たとえば合計が<var>4</var>になるのは</p>
-<pre xml:lang="en"><samp>(1, 3), (2, 2), (3, 1)</samp></pre>
-<p>の３通り。樹形図を書かせれば間違えようがない。しかし樹形図を書かせなかったら</p>
-<pre xml:lang="en"><samp>(1, 3), (2, 2), <em class="false">(2, 2)</em>, (3, 1)</samp></pre>
-<p>のような間違いが発生する場合がある。というかむしろ最初は書かせずにこの間違いを意図的に誘発しておいてから樹形図に立ち返らせると納得させられると共に慎重さが養われるかもしれない。</p>
+この中で、たとえば合計が<var>4</var>になるのは<br />
+<samp xml:lang="en">(1, 3), (2, 2), (3, 1)</samp><br />
+の３通り。樹形図を書かせれば間違えようがない。<br />
+しかし樹形図を書かせなかったら<br />
+<samp xml:lang="en">(1, 3), (2, 2), <em class="false">(2, 2)</em>, (3, 1)</samp><br />
+のような間違いが発生する場合がある。というかむしろ最初は書かせずにこの間違いを意図的に誘発しておいてから樹形図に立ち返らせると納得させられると共に慎重さが養われるかもしれない。</p>
 </section>
 </article>
 <article id="ID_TIME_STAMP_1661325034673">
@@ -202,8 +203,8 @@ for await (const p of P(process.argv.slice(2))) {
     console.log(p);
 }</code>
 
-<samp>$ node permutation.js a b c
-[ 'a', 'b', 'c' ]
+<samp>$ </samp><kbd>node permutation.js a b c
+</kbd><samp>[ 'a', 'b', 'c' ]
 [ 'a', 'c', 'b' ]
 [ 'b', 'a', 'c' ]
 [ 'b', 'c', 'a' ]
@@ -241,12 +242,12 @@ function isPrime(m) {
 <p>と書いて答え合わせしてやったらえらく感動された。どうやら今時の子どもはプログラムを書ける人を凄いと思うらしい。</p>
 <p>これは<span xml:lang="en">perl cookbook</span>で読んで20年ほど前から使わせてもらっているから純然たる暗記の反芻でしかないわけだがと内心苦笑した。本来は素数判定が先んじるべきだがこの正規表現応用が記憶に染み付いてしまっている。</p>
 <p><code xml:lang="en">[@@matchAll]</code>で一行再帰で書けないかと少しやってみたがかなり汚くなるので止めた。その過程で</p>
-<pre xml:lang="en"><samp>&gt; r = /^(oo+?)\1+$/g;
-/^(oo+?)\1+$/g
-&gt; Array.from('o'.repeat(100).matchAll(r))<strong>.flatMap</strong>(([_0, _1]) =&gt; _0 ? _0.length / _1.length : 1);
-[ 50 ]
-&gt; Array.from('o'.repeat(100).matchAll(r))<strong>.map</strong>(([_0, _1]) =&gt; _0 ? _0.length / _1.length : 1);
-[ 50 ]</samp></pre>
+<pre xml:lang="en"><samp>&gt; </samp><kbd>r = /^(oo+?)\1+$/g;
+</kbd><samp>/^(oo+?)\1+$/g
+&gt; </samp><kbd>Array.from('o'.repeat(100).matchAll(r))<strong>.flatMap</strong>(([_0, _1]) =&gt; _0 ? _0.length / _1.length : 1);
+</kbd><samp>[ 50 ]
+&gt; </samp><kbd>Array.from('o'.repeat(100).matchAll(r))<strong>.map</strong>(([_0, _1]) =&gt; _0 ? _0.length / _1.length : 1);
+</kbd><samp>[ 50 ]</samp></pre>
 <p>のように<var xml:lang="en">Array#flatMap()</var>と<var xml:lang="en">Array#map()</var>が結果同じになるという事例に遭遇した。当たり前ではあるものの、無意味に<var xml:lang="en">Array#flatMap()</var>を使って気づいていない場合があるかもしれない。</p>
 <ins datetime="2022-08-02T18:07:00Z"><p>やっぱり<span xml:lang="en">Google Chrome</span>の&lt;pre&gt;要素のスタイルが変。空白文字を独自の扱いしてんのかな。今の仕様が『<a href="https://drafts.csswg.org/css-text/#white-space-property" hreflang="en" xml:lang="en">3. White Space and Wrapping: the white-space property</a>』であるとして、どの値にも該当しない扱いで空白文字を処理している。もしかしたら<a href="https://drafts.csswg.org/css-text/#valdef-white-space-nowrap" hreflang="en" xml:lang="en"><var>nowrap</var></a>の空白文字扱いにある<q cite="https://drafts.csswg.org/css-text/#valdef-white-space-nowrap" xml:lang="en">Like <var>normal</var>, this value collapses white space;</q>だけを切り取り読みして空白文字のまとめ方を自分ルールでやっちゃったのかな？しかしこの<span xml:lang="en">Like <a href="https://drafts.csswg.org/css-text/#valdef-white-space-normal" hreflang="en"><var>normal</var></a></span>は<q cite="https://drafts.csswg.org/css-text/#valdef-white-space-normal" xml:lang="en">This value directs user agents to collapse sequences of white space into <em>a single</em> character (or in some cases, <em>no character</em>).</q>に倣うようにと解釈するのが自然だと思うけどな。</p>
 <p>(もちろん言うまでもなくこのブラウザデフォルト値の<a href="https://drafts.csswg.org/css-text/#valdef-white-space-pre" hreflang="en" xml:lang="en"><var>pre</var></a>に然るべき表示ではないわけで……。)</p></ins>
@@ -256,26 +257,26 @@ function isPrime(m) {
 <section>
 <h3><code xml:lang="en">0 &lt; n &lt; Number.EPSILON</code>と誤記して暫く気付かなかった。</h3>
 <p>以下の通り。</p>
-<pre xml:lang="en"><samp>&gt; Number(true)
-1
-&gt; Number(false)
-0
-&gt; true &lt; .2
-false
-&gt; true &lt; 1.2
-true
-&gt; 0 &lt; .1
-true
-&gt; .1 &lt; .2
-true
-&gt; 0 &lt; .1 &lt; .2 // Number(0 &lt; .1) &lt; .2
-<strong>false</strong>
-&gt; 1 &lt; 1.1
-true
-&gt; 1.1 &lt; 1.2
-true
-&gt; 1 &lt; 1.1 &lt; 1.2 // Number(1 &lt; 1.1) &lt; 1.2
-<strong>true</strong></samp></pre>
+<pre xml:lang="en"><samp>&gt; </samp><kbd>Number(true)
+</kbd><samp>1
+&gt; </samp><kbd>Number(false)
+</kbd><samp>0
+&gt; </samp><kbd>true &lt; .2
+</kbd><samp>false
+&gt; </samp><kbd>true &lt; 1.2
+</kbd><samp>true
+&gt; </samp><kbd>0 &lt; .1
+</kbd><samp>true
+&gt; </samp><kbd>.1 &lt; .2
+</kbd><samp>true
+&gt; </samp><kbd>0 &lt; .1 &lt; .2 // Number(0 &lt; .1) &lt; .2
+</kbd><samp><strong>false</strong>
+&gt; </samp><kbd>1 &lt; 1.1
+</kbd><samp>true
+&gt; </samp><kbd>1.1 &lt; 1.2
+</kbd><samp>true
+&gt; </samp><kbd>1 &lt; 1.1 &lt; 1.2 // Number(1 &lt; 1.1) &lt; 1.2
+</kbd><samp><strong>true</strong></samp></pre>
 </section>
 </article>
 <article id="ID_TIME_STAMP_1659033675876">
