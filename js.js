@@ -46,7 +46,11 @@ document.addEventListener('DOMContentLoaded', e => {
 document.addEventListener('mouseover', e => {
     try {
         console.log((({title, textContent}) => `${textContent} : ${title}`)(Array.from(document.querySelectorAll('abbr[title], acronym[title]')).find((abac => ({textContent}) => textContent == abac.textContent)(e.target.closest('abbr:not([title]), acronym:not([title])')))));
-    } catch {
-        ;
-    }
+    } catch {}
 });
+
+document.addEventListener('dblclick', e => {
+    try {
+        console.log(e.target.closest('[id]').id);
+    } catch {}
+})

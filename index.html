@@ -18,6 +18,29 @@
 <!--
 <math xmlns="http://www.w3.org/1998/Math/MathML" xml:lang="en"></math>
 -->
+<article id="ID_TIME_STAMP_1661496987862">
+<section>
+<h3>同じものを含む順列</h3>
+<ul xml:lang="en"><li><pre><samp>&gt;&gt;&gt; </samp><kbd>from itertools import permutations
+</kbd><samp>&gt;&gt;&gt; </samp><kbd>[p for p in permutations(['a', 'b', 'b', 'c', ], 1)]
+</kbd><samp>[('a',), ('b',), <em class="false">('b',)</em>, ('c',)]
+&gt;&gt;&gt; </samp><kbd>[p for p in permutations(['a', 'b', 'b', 'c', ], 2)]
+</kbd><samp>[('a', 'b'), <em class="false">('a', 'b')</em>, ('a', 'c'),
+ ('b', 'a'), ('b', 'b'), ('b', 'c'),
+ <em class="false">('b', 'a')</em>, <em class="false">('b', 'b')</em>, <em class="false">('b', 'c')</em>,
+ ('c', 'a'), ('c', 'b'), <em class="false">('c', 'b')</em>]</samp></pre></li>
+<li><pre><samp>irb(main):001:0&gt; </samp><kbd>['a', 'b', 'b', 'c', ].permutation(1).to_a
+</kbd><samp>=&gt; [["a"], ["b"], <em class="false">["b"]</em>, ["c"]]
+irb(main):002:0&gt; </samp><kbd>['a', 'b', 'b', 'c', ].permutation(2).to_a
+</kbd><samp>=&gt; [["a", "b"], <em class="false">["a", "b"]</em>, ["a", "c"],
+ ["b", "a"], ["b", "b"], ["b", "c"],
+ <em class="false">["b", "a"]</em>, <em class="false">["b", "b"]</em>, <em class="false">["b", "c"]</em>,
+ ["c", "a"], ["c", "b"], <em class="false">["c", "b"]</em>]</samp></pre></li></ul>
+<p>つまり<span xml:lang="en">python</span>と<span xml:lang="en">ruby</span>は、いわば『配列インデックスの順列からのマッピングを無検査で全て出力する』方針になっているようだ。<br />
+でも殆どの人は間違っていても気付かないんじゃないか？</p>
+<p><a href="#ID_TIME_STAMP_1659801258913" xml:lang="en">2022-08-06T15:54:18Z</a>で書いた<q cite="#ID_TIME_STAMP_1659801258913">とりあえず試してみた</q>からの部分も同様の方針になっているが、とりあえずじゃなく作る時には数学的というか人間的に正しい結果を返すよう丁寧に書きたいと思う。</p>
+</section>
+</article>
 <article id="ID_TIME_STAMP_1661361550392">
 <section>
 <h3>実数の絶対値</h3>
