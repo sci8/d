@@ -24,16 +24,33 @@ document.addEventListener('DOMContentLoaded', e => {
     })
     .catch(console.error);
 
-    Promise.resolve(['abbr, acronym', 'abbr[title], acronym[title]'])
-    .then(([selector_abac, selector_abac_title]) => {
-        const abacs = Array.from(document.body.querySelectorAll(selector_abac));
+    Promise.resolve(['abbr[title], acronym[title]', 'abbr:not([title]), acronym:not([title])'])
+    .then(([selector_abac_title, selector_abac_not_title]) => {
+        const abacs_title = {};
+        const abacs_not_title = {};
+        for (const abac_not_title of document.querySelectorAll(selector_abac_not_title)) {
+            const textContent = abac_not_title.textContent.trim();
+            abacs_not_title[textContent] ??= [];
+            abacs_not_title[textContent].push(abac_not_title);
+        }
         for (const abac_title of document.querySelectorAll(selector_abac_title)) {
-            const {title, textContent: textContent_abac_title} = abac_title;
-            const abac = abacs.filter(_ => !abac_title.isSameNode(_)).find(({textContent: textContent_abac}) => textContent_abac == textContent_abac_title);
-            if (abac) {
-                abac.setAttribute('title', title);
-                abac_title.removeAttribute('title');
+            const title = abac_title.getAttribute('title').trim();
+            const textContent = abac_title.textContent.trim();
+            if (title == '') {
+                abacs_not_title[textContent] ??= [];
+                abacs_not_title[textContent].push(abac_title);
+            } else {
+                abac_title.setAttribute('title', title);// /^ +| +$//g
+                abacs_title[textContent] ??= [];
+                abacs_title[textContent].push(abac_title);
             }
+        }
+        for (const [textContent, [{title}]] of Object.entries(abacs_title)) {console.log(title);
+            abacs_not_title[textContent]?.forEach(abac_not_title => abac_not_title.setAttribute('title', title));
+            delete abacs_not_title[textContent];
+        }
+        for (const textContent of Object.keys(abacs_not_title)) {
+            abacs_not_title[textContent].forEach(({localName}) => console.error(`<${localName}>${textContent}</${localName}> has no title.`));
         }
     })
     .catch(console.error);
@@ -43,14 +60,4 @@ document.addEventListener('DOMContentLoaded', e => {
     }
 });
 
-document.addEventListener('mouseover', e => {
-    try {
-        console.log((({title, textContent}) => `${textContent} : ${title}`)(Array.from(document.querySelectorAll('abbr[title], acronym[title]')).find((abac => ({textContent}) => textContent == abac.textContent)(e.target.closest('abbr:not([title]), acronym:not([title])')))));
-    } catch {}
-});
-
-document.addEventListener('dblclick', e => {
-    try {
-        console.log(e.target.closest('[id]').id);
-    } catch {}
-})
+document.addEventListener('dblclick', e => {try {console.log(e.target.closest('[id]').id);} catch {}});

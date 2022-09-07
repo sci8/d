@@ -18,13 +18,20 @@
 <!--
 <math xmlns="http://www.w3.org/1998/Math/MathML" xml:lang="en"></math>
 -->
+<article id="ID_TIME_STAMP_1662551478088">
+<section>
+<h3 xml:lang="en"><samp>Too Many Requests</samp></h3>
+<p><abbr xml:lang="en" title="application programming interface">API</abbr>にリクエストして<abbr xml:lang="en">HTTP</abbr>ステータスコード<samp xml:lang="en" title="Too Many Requests">429</samp>が出たとする。というか初期において必ず出る。おもむろに調べたりして適当な間隔を挿む。</p>
+<p>しかしながら、そもそも、なぜ<abbr lang="en">API</abbr>の中の人が提供するサンプルクライアントはここまでやってくれていないのか、しかも例外なくやってくれていないわけだが、いつも疑問に思わざるを得ない。ものすごく細かくミリ秒で間隔の下限値をドキュメントしてくれていたりするのはもちろん必要とは思うが、同時に、なぜそれを自分とこが提供するサンプルクライアントに反映しないのか、ただただ謎でしかない。中の人の機嫌というか匙加減というか胸三寸で利用拒否されたりする場合だってあるはずだが、『いやいやいや、そもそもお宅のサンプルをそのまま利用してリクエストしているだけなんですけどどうして適度にリクエスト間隔を作るようなものを提供していらっしゃらないのですか？』ってならないか？</p>
+</section>
+</article>
 <article id="ID_TIME_STAMP_1661496987862">
 <section>
 <h3>同じものを含む順列</h3>
 <ul xml:lang="en"><li><pre><samp>&gt;&gt;&gt; </samp><kbd>from itertools import permutations
 </kbd><samp>&gt;&gt;&gt; </samp><kbd>[p for p in permutations(['a', 'b', 'b', 'c', ], 1)]
 </kbd><samp>[('a',), ('b',), <em class="false">('b',)</em>, ('c',)]
-&gt;&gt;&gt; </samp><kbd>[p for p in permutations(['a', 'b', 'b', 'c', ], 2)]
+&gt;&gt;&gt; </samp><kbd>list(permutations(['a', 'b', 'b', 'c', ], 2))
 </kbd><samp>[('a', 'b'), <em class="false">('a', 'b')</em>, ('a', 'c'),
  ('b', 'a'), ('b', 'b'), ('b', 'c'),
  <em class="false">('b', 'a')</em>, <em class="false">('b', 'b')</em>, <em class="false">('b', 'c')</em>,
@@ -141,19 +148,19 @@ await setImmediate();</code></pre>が用意されている。ブラウザでは�
 <p>まるで他人事のように言うと私はいつも順列か数独ソルバーを書くようで、いずれにせよ樹形図を脳内に描いてそれをコードにする作業となる。学習しているわけではないくせに手持ち無沙汰だったので何気に順列を書いてみた。</p>
 <ol>
 <li><p>私にはまず樹形図を<em>探索するような</em>コードを書いてしまう悪い傾向・癖がある。それはもう書く前から<samp xml:lang="en">RangeError: Maximum call stack size exceeded</samp>になるの分かっていても書いてしまう。</p>
-<pre xml:lang="en"><code>async function * P_indices_search(m, n, ...indices) {
+<pre xml:lang="en"><code>async function * P_indices_search(n, r, ...indices) {
     switch (indices.length) {
         case 0: {
-            yield * P_indices_search(m, n || m, 0);
+            yield * P_indices_search(n, r || n, 0);
             break;
         }
-        case n || m: {
+        case r || n: {
             yield indices.slice(0);
             let i = indices.pop() + 1;
             while (true) {
                 if (indices.includes(i)) {
                     i += 1;
-                } else if (i == m) {
+                } else if (i == n) {
                     if (indices.length == 0) {
                         return;
                     } else {
@@ -163,15 +170,15 @@ await setImmediate();</code></pre>が用意されている。ブラウザでは�
                     break;
                 }
             }
-            yield * P_indices_search(m, n || m, ...indices, i);
+            yield * P_indices_search(n, r || n, ...indices, i);
             break;
         }
         default: {
-            for (let i = 0; i &lt; m; i++) {
+            for (let i = 0; i &lt; n; i++) {
                 if (indices.includes(i)) {
                     continue;
                 } else {
-                    yield * P_indices_search(m, n || m, ...indices, i);
+                    yield * P_indices_search(n, r || n, ...indices, i);
                     break;// for
                 }
             }
@@ -181,17 +188,17 @@ await setImmediate();</code></pre>が用意されている。ブラウザでは�
 }</code></pre>
 <p>案の定、使えなかった。6の階乗が精一杯だった。</p></li>
 <li><p>頭を切り替えて<em>なるべくフラットに</em>書いてみた。</p>
-<pre xml:lang="en"><code>async function * P_indices_semiFlat(m, n) {
-    if (n == undefined || Number.isNaN(n)) {
-        n = m;
+<pre xml:lang="en"><code>async function * P_indices_semiFlat(n, r) {
+    if (r == undefined || Number.isNaN(r)) {
+        r = n;
     }
-    if (n == 1) {
-        for (let i = 0; i &lt; m; i++) {
+    if (r == 1) {
+        for (let i = 0; i &lt; n; i++) {
             yield [i];
         }
     } else {
-        for await (const p of P_indices_semiFlat(m, n - 1)) {
-            for (let i = 0; i &lt; m; i++) {
+        for await (const p of P_indices_semiFlat(n, r - 1)) {
+            for (let i = 0; i &lt; n; i++) {
                 if (!p.includes(i)) {
                     yield [...p, i];
                 }
@@ -202,12 +209,12 @@ await setImmediate();</code></pre>が用意されている。ブラウザでは�
 <p>10の階乗(3_628_800)ぶんすべてを出力させたら問題無く完遂した。しかし遅い。</p></li>
 <li><p><em>再帰を消してみる。</em><span xml:lang="en">python</span>で言うと<var xml:lang="en">itertools.product()</var>からフィルターすることで<var xml:lang="en">itertools.permutations()</var>を作る。</p>
 <pre xml:lang="en"><code>
-async function * P_indices(m, n) {
-    const J = n || m;
-    const I = m ** J;
+async function * P_indices(n, r) {
+    const J = r || m;
+    const I = n ** J;
     for (let i = 0; i &lt; I; i++) {
         const dps = [];
-        for (let j = i; dps.unshift(j % m) &lt; J; j = Number.parseInt(j / m));
+        for (let j = i; dps.unshift(j % n) &lt; J; j = Number.parseInt(j / n));
         if (new Set(dps).size == dps.length) {
             yield dps;
         }
@@ -216,9 +223,9 @@ async function * P_indices(m, n) {
 <p>まあ一先ずはこれで良い。というか暇潰しなので良いも糞も無いが。</p></li>
 </ol>
 <p>とりあえず試してみた。</p>
-<pre xml:lang="en"><code>async function * P(a, n_of_<sub>m</sub>P<sub>n</sub>) {
+<pre xml:lang="en"><code>async function * P(a, r_of_<sub>n</sub>P<sub>r</sub>) {
     const A = Array.from(a);
-    for await (const p_indices of P_indices(A.length, n_of_<sub>m</sub>P<sub>n</sub>)) {
+    for await (const p_indices of P_indices(A.length, r_of_<sub>n</sub>P<sub>r</sub>)) {
         yield p_indices.map(i =&gt; A[i]);
     }
 }
