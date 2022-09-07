@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', e => {
                 abacs_title[textContent].push(abac_title);
             }
         }
-        for (const [textContent, [{title}]] of Object.entries(abacs_title)) {console.log(title);
+        for (const [textContent, [{title}]] of Object.entries(abacs_title)) {
             abacs_not_title[textContent]?.forEach(abac_not_title => abac_not_title.setAttribute('title', title));
             delete abacs_not_title[textContent];
         }
