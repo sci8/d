@@ -45,12 +45,18 @@ document.addEventListener('DOMContentLoaded', e => {
                 abacs_title[textContent].push(abac_title);
             }
         }
-        for (const [textContent, [{title}]] of Object.entries(abacs_title)) {
-            abacs_not_title[textContent]?.forEach(abac_not_title => abac_not_title.setAttribute('title', title));
-            delete abacs_not_title[textContent];
-        }
-        for (const textContent of Object.keys(abacs_not_title)) {
-            abacs_not_title[textContent].forEach(({localName}) => console.error(`<${localName}>${textContent}</${localName}> has no title.`));
+        if (location.protocol == 'file:') {
+            for (const [textContent, [{title}]] of Object.entries(abacs_title)) {
+                abacs_not_title[textContent]?.forEach(abac_not_title => abac_not_title.setAttribute('title', title));
+                delete abacs_not_title[textContent];
+            }
+            for (const textContent of Object.keys(abacs_not_title)) {
+                abacs_not_title[textContent].forEach(({localName}) => console.error(`<${localName}>${textContent}</${localName}> has no title.`));
+            }
+        } else {
+            for (const [textContent, [{title}]] of Object.entries(abacs_title)) {
+                abacs_not_title[textContent]?.forEach(abac_not_title => abac_not_title.setAttribute('title', title));
+            }
         }
     })
     .catch(console.error);
@@ -60,4 +66,6 @@ document.addEventListener('DOMContentLoaded', e => {
     }
 });
 
-document.addEventListener('dblclick', e => {try {console.log(e.target.closest('[id]').id);} catch {}});
+if (location.protocol == 'file:') {
+    document.addEventListener('dblclick', e => {try {console.log(e.target.closest('[id]').id);} catch {}});
+}
