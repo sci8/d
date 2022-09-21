@@ -18,6 +18,41 @@
 <!--
 <math xmlns="http://www.w3.org/1998/Math/MathML" xml:lang="en"></math>
 -->
+<article id="ID_TIME_STAMP_1663785152279">
+<section>
+<h3>スプレッド使い過ぎ</h3>
+<p>な人よくいるよなと感じる。個人的にはそこでスタックなんちゃらで止まると切実に困るからなるべく<code xml:lang="en">for of</code>等でダラダラ書く場合が多い。</p>
+<p>仮に使うとしても、<code xml:lang="en">Array.from()</code>と結果同じならスプレッドを避ける。つまり<code xml:lang="en">Array#(unshift|push)()</code>みたいなのとの合体をしない場合は使わない。</p>
+<pre xml:lang="en"><samp>&gt; </samp><kbd>o = { a: 1, b: 2 }
+</kbd><samp>{ a: 1, b: 2 }
+&gt; </samp><kbd>o.c = {...o}
+</kbd><samp>{ a: 1, b: 2 }
+&gt; </samp><kbd>o
+</kbd><samp>{ a: 1, b: 2, c: { a: 1, b: 2 } }</samp></pre>
+<p>みたいなこともできるが、これはおそらく本来の意図と違う結果になっていると思われるし、この使い方はあまり見かけない。更に面倒臭くディスクリプターを設定するだろうと思う。</p>
+</section>
+</article>
+<article id="ID_TIME_STAMP_1663779444822">
+<section>
+<h3>モンティ・ホール問題だっけ？</h3>
+<p>そんなのがあるな。インターネット初期の90年代後半に初めて見た。今の子はどうか知らないが、少なくとも私は中高生の頃には見たことがない。網羅的に受験数学に必要な知識を学んでいた超真面目な私が見たことなかったということはつまりネットがまだまだすっからかんだった2000年頃までの中高生で見たことがある人は全国に世代何人いるやらって感じだと思われる。</p>
+<p>ちなみに私は初見で脳内であっさり解けた、つもりでいる。どこを検索してもコピペ的に同様な解答が書かれているのだが、それとは合わないのでこんな言い方にならざるを得ない。</p>
+<p>当たりが<var xml:lang="en">1</var>個、外れが<var xml:lang="en">n</var>個あるとする。その合計<var xml:lang="en">n+1</var>個から<var xml:lang="en">1</var>個を選ぶ。次に残りから<var xml:lang="en">1</var>個だけ、それは最初に選んだものと合わせて必ず当たりが含まれるように当たりを知っている人が選んでくれて、その合計<var xml:lang="en">2</var>個から選び直してファイナルアンサーとなる。じゃあその2回目の選択時に変更するかしないかどちらが得か？という設定。</p>
+<p>大概これは<var xml:lang="en">n=2</var>の合計<var xml:lang="en">3</var>個からのスタートになっていて、全ての解答解説が確率が<var xml:lang="en">1/3</var>で云々となっている。が、前述の通り受験数学を超真面目に学び尽くした中高時代を過ごした私から言わせてもらうとそんな乱暴な解き方するって自分にどんだけ自信あんの？ってビビらされる笑。丁寧に場合の数を数えるだろって思う。</p>
+<ol><li><ul><li>最初に当たりを引いたら、必ず外れとの第二選択になる。それは外れ<var xml:lang="en">n</var>個から選んで渡される<var xml:lang="en">1</var>個との二者択一になるわけで、脳内で樹形図を書けば一目瞭然で、不変で当たるのが<var xml:lang="en">1</var>通り、変えて外れるのが<var xml:lang="en">n</var>通り。</li>
+<li>最初に外れを引いたら、必ず当たりとの第二選択になる。言い換えれば最初にどの外れを選んでいようとも残りから当たりを提示されるに決まっている。これまた脳内で樹形図を書けば一目瞭然で、最初の選び方は<var xml:lang="en">n</var>通り。そのそれぞれで、不変で外れるか、変えて当たるか。つまり、不変で外れるのも、変えて当たるのも、<var xml:lang="en">n</var>通り。</li></ul></li>
+<li><table><caption>整理すると</caption>
+<colgroup><col /></colgroup><colgroup><col /><col /></colgroup>
+<thead><tr><td><br /></td><th>当たり</th><th>外れ</th></tr></thead>
+<tr><th>不変</th><td><var xml:lang="en">1</var></td><td><var xml:lang="en">n</var></td></tr>
+<tr><th>変</th><td><var xml:lang="en">n</var></td><td><var xml:lang="en">n</var></td></tr>
+</table></li>
+<li>見ての通り、不変で当たる場合だけ少ない。明らかにこれで終了だろ？<br />
+しかし世の全ての人たちが何で確率を持ち出してワンランク抽象的にして解り難くするのか解らないが、どうしてもというなら、<ul><li>不変で当たるのが、<var xml:lang="en">1/(3n+1)</var></li><li>その他はどれも、<var xml:lang="en">n/(3n+1)</var></li></ul>となる。これはただただ単純明快に上の表のまま。<br />
+例えば<var xml:lang="en">n=2</var>の合計<var xml:lang="en">3</var>個スタートなら、不変で当たる確率が<var xml:lang="en">1/7</var>、変えて当たる確率が、<var xml:lang="en">2/7</var>、である。</li></ol>
+<p>世の中の全てのコピペ解答は、上記の表の当たりカラムだけを見ている。つまりいきなり条件付き確率を求めている。だから<var xml:lang="en">1/3</var>と<var xml:lang="en">2/3</var>という答えになっている。それはそれで正しいが、丁寧さに著しく欠ける。これではおそらくほぼ全ての中高生は自力で解けるレベルまでの理解を得られず暗記に終わる。元々の定義に帰って全ての事象を調べるに限る。</p>
+</section>
+</article>
 <article id="ID_TIME_STAMP_1663511864961">
 <section>
 <h3>損切り履歴を見ると気が遠くなる。</h3>
